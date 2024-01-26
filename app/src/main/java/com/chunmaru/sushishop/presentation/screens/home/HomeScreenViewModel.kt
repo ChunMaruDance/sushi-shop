@@ -6,7 +6,6 @@ import androidx.navigation.NavController
 import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.data.api.ServiceApi
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
-import com.chunmaru.sushishop.data.models.dishes.IngredientsData
 import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
 import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
@@ -105,28 +104,6 @@ class HomeScreenViewModel @Inject constructor(
                         discount = 25.5f,
                         weight = 200f,
                         image = R.drawable.test2,
-                        ingredients = listOf(
-                            IngredientsData(
-                                name = "Onigiry",
-                                img = R.drawable.avocado
-                            ),
-                            IngredientsData(
-                                name = "Rays",
-                                img = R.drawable.rice
-                            ),
-                            IngredientsData(
-                                name = "Energy",
-                                img = R.drawable.caviar
-                            ),
-                            IngredientsData(
-                                name = "Nory",
-                                img = R.drawable.nori
-                            ),
-                            IngredientsData(
-                                name = "Nory",
-                                img = R.drawable.nori
-                            )
-                        )
                     ),
                     TestDish(
                         id = 2,
@@ -137,28 +114,6 @@ class HomeScreenViewModel @Inject constructor(
                         discount = 25.5f,
                         weight = 200f,
                         image = R.drawable.test1,
-                        ingredients = listOf(
-                            IngredientsData(
-                                name = "Onigiry",
-                                img = R.drawable.avocado
-                            ),
-                            IngredientsData(
-                                name = "Rays",
-                                img = R.drawable.rice
-                            ),
-                            IngredientsData(
-                                name = "Energy",
-                                img = R.drawable.caviar
-                            ),
-                            IngredientsData(
-                                name = "Nory",
-                                img = R.drawable.nori
-                            ),
-                            IngredientsData(
-                                name = "Nory",
-                                img = R.drawable.nori
-                            )
-                        )
                     ),
                     TestDish(
                         id = 3,
@@ -169,28 +124,6 @@ class HomeScreenViewModel @Inject constructor(
                         discount = 25.5f,
                         weight = 200f,
                         image = R.drawable.test2,
-                        ingredients = listOf(
-                            IngredientsData(
-                                name = "Onigiry",
-                                img = R.drawable.avocado
-                            ),
-                            IngredientsData(
-                                name = "Rays",
-                                img = R.drawable.rice
-                            ),
-                            IngredientsData(
-                                name = "Energy",
-                                img = R.drawable.caviar
-                            ),
-                            IngredientsData(
-                                name = "Nory",
-                                img = R.drawable.nori
-                            ),
-                            IngredientsData(
-                                name = "Nory",
-                                img = R.drawable.nori
-                            )
-                        )
                     )
                 )//list
             )
@@ -214,28 +147,6 @@ class HomeScreenViewModel @Inject constructor(
                     discount = 25.5f,
                     weight = 200f,
                     image = R.drawable.test2,
-                    ingredients = listOf(
-                        IngredientsData(
-                            name = "Onigiry",
-                            img = R.drawable.avocado
-                        ),
-                        IngredientsData(
-                            name = "Rays",
-                            img = R.drawable.rice
-                        ),
-                        IngredientsData(
-                            name = "Energy",
-                            img = R.drawable.caviar
-                        ),
-                        IngredientsData(
-                            name = "Nory",
-                            img = R.drawable.nori
-                        ),
-                        IngredientsData(
-                            name = "Nory",
-                            img = R.drawable.nori
-                        )
-                    )
                 )
             )
         )

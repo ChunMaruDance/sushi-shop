@@ -140,7 +140,7 @@ fun OrderScreen(
                         }
 
                         items(
-                            currentState.dishesWithCounters,
+                            items = currentState.dishesWithCounters,
                             key = { it.dish.name }) { dishCounter ->
 
                             val dismissState = rememberDismissState()

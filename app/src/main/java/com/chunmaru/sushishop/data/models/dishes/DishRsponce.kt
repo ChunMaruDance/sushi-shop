@@ -47,7 +47,6 @@ data class TestDish(
     val discount: Float,
     val weight: Float,
     val image: Int,
-    val ingredients: List<IngredientsData>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -57,8 +56,7 @@ data class TestDish(
         parcel.readFloat(),
         parcel.readFloat(),
         parcel.readFloat(),
-        parcel.readInt(),
-        parcel.createTypedArrayList(IngredientsData)!!
+        parcel.readInt()
     ) {
     }
 
@@ -71,7 +69,6 @@ data class TestDish(
         parcel.writeFloat(discount)
         parcel.writeFloat(weight)
         parcel.writeInt(image)
-        parcel.writeTypedList(ingredients)
     }
 
     override fun describeContents(): Int {
@@ -87,7 +84,6 @@ data class TestDish(
             return arrayOfNulls(size)
         }
     }
-
 }
 
 

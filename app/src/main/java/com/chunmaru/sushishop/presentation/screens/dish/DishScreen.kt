@@ -15,6 +15,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,6 +32,7 @@ import androidx.navigation.NavController
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
 import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
+import com.chunmaru.sushishop.presentation.screens.ScreenState
 import com.chunmaru.sushishop.ui.theme.Gray120
 import com.chunmaru.sushishop.ui.theme.Gray30
 
@@ -41,137 +43,137 @@ fun DishScreen(
 ) {
 
     val viewModel: DishScreenViewModel = hiltViewModel()
-
     viewModel.initController(navController)
-
-    viewModel.getPreviewBackStackData()
-
-    val dishes = mutableListOf<TestDish>()
-    viewModel.getPreviewBackStackData()?.let {
-        dishes.addAll(it)
-    }
-
-    val counter = remember {
-        mutableIntStateOf(1)
-    }
+    val state = viewModel.state.collectAsState()
 
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
 
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 14.dp, end = 14.dp, bottom = 7.dp)
-                    .clip(RoundedCornerShape(20))
-                    .background(color = Color.Transparent)
-                    .height(60.dp)
-                    .clickable {
+    when (val currentState = state.value) {
+        is ScreenState.Initial -> {
+            viewModel.getPreviewBackStackData()
+        }
 
-                        viewModel.putInCurrentBackStack(
-                            dish = DishWithCounter(
-                                dish = dishes[0],
-                                counter = counter.intValue
-                            ),
-                            onSuccess = { onBuyClick() })
+        is ScreenState.Pending -> {}
+        is ScreenState.Success -> {
 
 
-                    },
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.Black
-                ),
-                elevation = CardDefaults.elevatedCardElevation(
-                    defaultElevation = 2.dp
-                )
-            ) {
+            val dish = currentState.data.dishWithCounter.dish
+            val ingredients = currentState.data.ingredientsData
+            val counter = currentState.data.dishWithCounter.counter
 
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                bottomBar = {
+
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 14.dp, end = 14.dp, bottom = 7.dp)
+                            .clip(RoundedCornerShape(20))
+                            .background(color = Color.Transparent)
+                            .height(60.dp)
+                            .clickable {
+                                viewModel.putInCurrentBackStack(
+                                    onSuccess = { onBuyClick() })
+                            },
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.Black
+                        ),
+                        elevation = CardDefaults.elevatedCardElevation(
+                            defaultElevation = 2.dp
+                        )
+                    ) {
+
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+
+                            Text(
+                                text = "Buy Now",
+                                color = Color(247, 247, 247),
+                                fontSize = 21.sp
+                            )
+
+                        }
+
+
+                    }
+
+                },
+                containerColor = MaterialTheme.colorScheme.onBackground
+            ) { paddingValues ->
+
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 12.dp)
                 ) {
 
-                    Text(
-                        text = "Buy Now",
-                        color = Color(247, 247, 247),
-                        fontSize = 21.sp
-                    )
+
+                    item {
+                        DefaultTopBar(
+                            title = "Detail",
+                            onBackClick = { navController.popBackStack() },
+                            onMoreClick = {
+                            },
+                        )
+                    }
+
+                    item {
+                        DishTextInfo(
+                            title = dish.name,
+                            category = dish.category
+                        )
+                    }
+
+                    item {
+                        DishImageWithIngredients(
+                            image = dish.image,
+                            ingredients = ingredients
+                        )
+                    }
+
+
+                    item {
+
+                        DishesPriceCountElement(
+                            count = counter,
+                            dish.price,
+                            onAddClick = {
+                               viewModel.addCounter()
+                            },
+                            onRemoveClick = {
+                                if (counter > 1) viewModel.removeCounter()
+                            }
+                        )
+                    }
+
+                    item {
+                        Text(
+                            text = "Description",
+                            color = Gray30,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 23.sp,
+                            modifier = Modifier.padding(top = 15.dp, bottom = 5.dp)
+                        )
+                        Text(
+                            text = dish.descriptions,
+                            color = Gray120,
+                            modifier = Modifier.padding(bottom = 50.dp),
+                            fontSize = 14.sp
+                        )
+                    }
+
 
                 }
 
 
             }
-
-        },
-        containerColor = MaterialTheme.colorScheme.onBackground
-    ) { paddingValues ->
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp)
-        ) {
-
-
-            item {
-                DefaultTopBar(
-                    title = "Detail",
-                    onBackClick = { navController.popBackStack() },
-                    onMoreClick = {
-                    },
-                )
-            }
-
-            item {
-                DishTextInfo(
-                    title = dishes[0].name,
-                    category = dishes[0].category
-                )
-            }
-
-            item {
-                DishImageWithIngredients(
-                    image = dishes[0].image,
-                    ingredients = dishes[0].ingredients
-                )
-            }
-
-
-            item {
-
-                DishesPriceCountElement(
-                    count = counter.intValue,
-                    dishes[0].price,
-                    onAddClick = {
-                        counter.intValue++
-                    },
-                    onRemoveClick = {
-                        if (counter.intValue > 1) counter.intValue--
-                    }
-                )
-            }
-
-            item {
-                Text(
-                    text = "Description",
-                    color = Gray30,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 23.sp,
-                    modifier = Modifier.padding(top = 15.dp, bottom = 5.dp)
-                )
-                Text(
-                    text = dishes[0].descriptions,
-                    color = Gray120,
-                    modifier = Modifier.padding(bottom = 50.dp),
-                    fontSize = 14.sp
-                )
-            }
-
-
         }
-
-
     }
+
+
 }
 
 @Composable
