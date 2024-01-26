@@ -20,7 +20,7 @@ fun ScreenNavigator() {
         navHostController = navigationState.navHostController,
         onHome = {
             HomeScreen(
-                navController = navigationState.navHostController,
+                 navigationState.navHostController,
                 onDishNavigate = { navigationState.navigate(Screen.DishScreen.route) },
                 onOrderNavigate = { navigationState.navigate(Screen.OrderScreen.route) },
                 onLoginScreen = { navigationState.navigate(Screen.LoginScreen.route) }

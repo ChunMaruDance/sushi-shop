@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.screens.home
+package com.chunmaru.sushishop.presentation.screens.home.elements
 
 class TapBarItems() {
 

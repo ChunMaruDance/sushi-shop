@@ -9,6 +9,7 @@ import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
 import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
 import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
+import com.chunmaru.sushishop.presentation.screens.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,8 +28,8 @@ class HomeScreenViewModel @Inject constructor(
     private val navigationStackController: NavigationStackController
 ) : ViewModel() {
 
-    private var _state: MutableStateFlow<HomeScreenState> =
-        MutableStateFlow(HomeScreenState.Initial)
+    private var _state: MutableStateFlow<ScreenState<CategoryState>> =
+        MutableStateFlow(ScreenState.Initial())
     val state = _state.asStateFlow()
 
     private lateinit var navController: NavController
@@ -89,8 +90,9 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun initData() {
+
         viewModelScope.launch(Dispatchers.IO) {
-            _state.value = HomeScreenState.PendingData
+            _state.value = ScreenState.Pending()
 
             val categoryState = CategoryState.ShowCategory(
                 activeCategory = "All",
@@ -128,7 +130,7 @@ class HomeScreenViewModel @Inject constructor(
                 )//list
             )
             delay(2000)
-            _state.value = HomeScreenState.ShowData(categoryState)
+            _state.value = ScreenState.Success(categoryState)
         }
     }
 
@@ -151,7 +153,7 @@ class HomeScreenViewModel @Inject constructor(
             )
         )
 
-        _state.value = HomeScreenState.ShowData(categoryState)
+        _state.value = ScreenState.Success(categoryState)
     }
 
 
