@@ -43,9 +43,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.chunmaru.sushishop.R
+import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
+import com.chunmaru.sushishop.presentation.screens.order.elements.OrderCard
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun OrderScreen(
     navController: NavController,
@@ -61,142 +63,159 @@ fun OrderScreen(
     }
 
     when (val currentState = state.value) {
-        OrderScreenState.Initial -> {}
-        OrderScreenState.Pending -> {}
-        is OrderScreenState.ShowData -> {
+        is ScreenState.Initial -> {}
+        is ScreenState.Pending -> {}
+        is ScreenState.Success -> {
 
-            val animVisible = remember { mutableStateOf(false) }
-            LaunchedEffect(Unit) { animVisible.value = true }
+            OrderScreenContent(
+                currentState = currentState,
+                viewModel = viewModel,
+                onOrderDetails = onOrderDetails,
+                navController = navController
+            )
+        }
+    }
 
-            AnimatedVisibility(
-                modifier = Modifier.fillMaxSize(),
-                visible = animVisible.value,
-                enter = slideInVertically(
-                    animationSpec = tween(500),
-                ) { _ -> -40 } + expandVertically(expandFrom = Alignment.Top) + fadeIn(tween(500))
-            ) {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    bottomBar = {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 14.dp, end = 14.dp, bottom = 7.dp)
-                                .clip(RoundedCornerShape(20))
-                                .background(color = Color.Transparent)
-                                .height(60.dp)
-                                .clickable {
-                                    viewModel.putInCurrentBackStackToOrderDetails(
-                                        onSuccess = { onOrderDetails() }
-                                    )
 
-                                },
-                            colors = CardDefaults.cardColors(
-                                containerColor = Color.Black
-                            ),
-                            elevation = CardDefaults.elevatedCardElevation(
-                                defaultElevation = 2.dp
+}
+
+
+@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
+@Composable
+private fun OrderScreenContent(
+    currentState: ScreenState.Success<List<DishWithCounter>>,
+    viewModel: OrderScreenViewModel,
+    onOrderDetails: () -> Unit,
+    navController: NavController
+) {
+    val animVisible = remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { animVisible.value = true }
+
+    AnimatedVisibility(
+        modifier = Modifier.fillMaxSize(),
+        visible = animVisible.value,
+        enter = slideInVertically(
+            animationSpec = tween(500),
+        ) { _ -> -40 } + expandVertically(expandFrom = Alignment.Top) + fadeIn(tween(500))
+    ) {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            bottomBar = {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 14.dp, end = 14.dp, bottom = 7.dp)
+                        .clip(RoundedCornerShape(20))
+                        .background(color = Color.Transparent)
+                        .height(60.dp)
+                        .clickable {
+                            viewModel.putInCurrentBackStackToOrderDetails(
+                                onSuccess = { onOrderDetails() }
                             )
-                        ) {
 
-                            Box(
-                                modifier = Modifier.fillMaxSize(),
-                                contentAlignment = Alignment.Center
-                            ) {
+                        },
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.Black
+                    ),
+                    elevation = CardDefaults.elevatedCardElevation(
+                        defaultElevation = 2.dp
+                    )
+                ) {
 
-                                Text(
-                                    text = "Order Now",
-                                    color = Color(247, 247, 247),
-                                    fontSize = 21.sp
-                                )
-
-                            }
-
-
-                        }
-                    }
-                ) { paddingValues ->
-
-
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.onBackground)
-                            .padding(bottom = 50.dp)
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
                     ) {
 
-                        item {
-                            DefaultTopBar(
-                                title = "Order",
-                                onMoreClick = { },
-                                onBackClick = {
-
-                                    viewModel.putInPreviewBackStackToHome(
-                                        onSuccess = { navController.popBackStack() }
-                                    )
-
-                                }
-                            )
-                        }
-
-                        items(
-                            items = currentState.dishesWithCounters,
-                            key = { it.dish.name }) { dishCounter ->
-
-                            val dismissState = rememberDismissState()
-                            if (dismissState.isDismissed(DismissDirection.EndToStart)) {
-                                viewModel.removeDish(dishCounter)
-                            }
-                            SwipeToDismiss(
-                                modifier = Modifier
-                                    .padding(top = 10.dp, start = 15.dp, end = 15.dp)
-                                    .animateItemPlacement(),
-                                state = dismissState, background = {
-                                    Card(
-                                        modifier = Modifier
-                                            .fillMaxSize()
-                                            .clip(RoundedCornerShape(15)),
-                                        shape = RoundedCornerShape(15),
-                                        colors = CardDefaults.cardColors(
-                                            containerColor = Color(255, 225, 225)
-                                        )
-                                    ) {
-                                        Box(
-                                            modifier = Modifier.fillMaxSize(),
-                                            contentAlignment = Alignment.CenterEnd
-                                        ) {
-                                            Icon(
-                                                painter = painterResource(id = R.drawable.delete),
-                                                contentDescription = "delete image",
-                                                tint = Color(255, 128, 128),
-                                                modifier = Modifier
-                                                    .size(35.dp)
-                                                    .padding(end = 10.dp)
-
-                                            )
-                                        }
-
-
-                                    }
-                                },
-                                directions = setOf(DismissDirection.EndToStart)
-                            ) {
-                                OrderCard(
-                                    dishWithCounter = dishCounter,
-                                    addCounter = {
-                                        viewModel.addCounter(dishCounter)
-                                    })
-
-                            }
-
-
-                        }
-
+                        Text(
+                            text = "Order Now",
+                            color = Color(247, 247, 247),
+                            fontSize = 21.sp
+                        )
 
                     }
 
 
                 }
+            }
+        ) { _ ->
+
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.onBackground)
+                    .padding(bottom = 50.dp)
+            ) {
+
+                item {
+                    DefaultTopBar(
+                        title = "Order",
+                        onMoreClick = { },
+                        onBackClick = {
+
+                            viewModel.putInPreviewBackStackToHome(
+                                onSuccess = { navController.popBackStack() }
+                            )
+
+                        }
+                    )
+                }
+
+                items(
+                    items = currentState.data,
+                    key = { it.dish.name }) { dishCounter ->
+
+                    val dismissState = rememberDismissState()
+                    if (dismissState.isDismissed(DismissDirection.EndToStart)) {
+                        viewModel.removeDish(dishCounter)
+                    }
+                    SwipeToDismiss(
+                        modifier = Modifier
+                            .padding(top = 10.dp, start = 15.dp, end = 15.dp)
+                            .animateItemPlacement(),
+                        state = dismissState, background = {
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .clip(RoundedCornerShape(15)),
+                                shape = RoundedCornerShape(15),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = Color(255, 225, 225)
+                                )
+                            ) {
+                                Box(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentAlignment = Alignment.CenterEnd
+                                ) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.delete),
+                                        contentDescription = "delete image",
+                                        tint = Color(255, 128, 128),
+                                        modifier = Modifier
+                                            .size(35.dp)
+                                            .padding(end = 10.dp)
+
+                                    )
+                                }
+
+
+                            }
+                        },
+                        directions = setOf(DismissDirection.EndToStart)
+                    ) {
+                        OrderCard(
+                            dishWithCounter = dishCounter,
+                            addCounter = {
+                                viewModel.addCounter(dishCounter)
+                            })
+
+                    }
+
+
+                }
+
+
             }
 
 

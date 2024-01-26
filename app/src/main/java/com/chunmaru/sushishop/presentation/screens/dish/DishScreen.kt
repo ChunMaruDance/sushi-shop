@@ -35,7 +35,6 @@ import com.chunmaru.sushishop.presentation.screens.dish.elements.DishesPriceCoun
 import com.chunmaru.sushishop.ui.theme.Gray120
 import com.chunmaru.sushishop.ui.theme.Gray30
 
-
 @Composable
 fun DishScreen(
     navController: NavController,

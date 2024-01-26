@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.screens.order
+package com.chunmaru.sushishop.presentation.screens.order.elements
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
