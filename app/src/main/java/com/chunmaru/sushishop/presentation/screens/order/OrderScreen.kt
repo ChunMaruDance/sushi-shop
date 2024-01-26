@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.dish.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable

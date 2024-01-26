@@ -38,7 +38,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.ScreenState
+import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.presentation.screens.home.elements.HomeScreenCarousel
 import com.chunmaru.sushishop.presentation.screens.home.elements.HomeTabBar
 import com.chunmaru.sushishop.presentation.screens.home.elements.HomeTopBar

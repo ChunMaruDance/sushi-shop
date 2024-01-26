@@ -11,7 +11,7 @@ import com.chunmaru.sushishop.data.models.dishes.IngredientsData
 import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
 import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
-import com.chunmaru.sushishop.presentation.screens.ScreenState
+import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.screens
+package com.chunmaru.sushishop.presentation.screens.defaults
 
 sealed class ScreenState<T> {
 

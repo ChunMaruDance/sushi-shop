@@ -4,12 +4,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunmaru.sushishop.data.api.NetworkResponse
-import com.chunmaru.sushishop.data.api.ServiceApi
 import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.admin.Admin
 import com.chunmaru.sushishop.data.storage.DataStoreManager
-import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
-import com.chunmaru.sushishop.presentation.screens.ScreenState
+import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

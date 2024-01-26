@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.screens.dish
+package com.chunmaru.sushishop.presentation.screens.dish.elements
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

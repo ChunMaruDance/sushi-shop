@@ -9,7 +9,7 @@ import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
 import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
 import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
-import com.chunmaru.sushishop.presentation.screens.ScreenState
+import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -33,7 +33,6 @@ class HomeScreenViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     private lateinit var navController: NavController
-
 
     private val orders = MutableStateFlow<MutableList<DishWithCounter>>(mutableListOf())
     val ordersCount: StateFlow<Int> = orders.map { list -> list.sumOf { it.counter } }

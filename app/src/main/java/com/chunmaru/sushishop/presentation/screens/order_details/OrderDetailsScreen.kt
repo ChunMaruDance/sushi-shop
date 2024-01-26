@@ -50,7 +50,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieConstants
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.dish.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.order_details.elements.BottomButton
 import com.chunmaru.sushishop.presentation.screens.order_details.elements.DefaultAlertDialog
 import com.chunmaru.sushishop.ui.theme.Gray120

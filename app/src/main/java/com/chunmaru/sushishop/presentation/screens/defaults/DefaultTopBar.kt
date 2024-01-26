@@ -1,11 +1,10 @@
-package com.chunmaru.sushishop.presentation.screens.dish
+package com.chunmaru.sushishop.presentation.screens.defaults
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -21,31 +20,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.home.elements.TopBarCard
 import com.chunmaru.sushishop.ui.theme.Gray30
 
-@Composable
-fun DishTopBar(
-    onBackClick: () -> Unit,
-    onMoreClick: () -> Unit
-) {
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        DefaultTopBar(
-            title = "Detail",
-            onMoreClick = onMoreClick,
-            onBackClick = onBackClick
-        )
-
-
-    }
-
-}
 
 @Composable
 fun DefaultTopBar(
