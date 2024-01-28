@@ -1,6 +1,7 @@
 package com.chunmaru.sushishop.data.api
 
 
+import com.chunmaru.sushishop.data.models.CategoryResponse
 import com.chunmaru.sushishop.data.models.admin.AdminResponse
 import com.chunmaru.sushishop.data.models.dishes.DishResponse
 import com.chunmaru.sushishop.data.models.login.LoginReceive
@@ -25,6 +26,18 @@ class ServiceController(
         val response = serviceApi.getProfile(token)
         return processApiResponse(response)
     }
+
+    suspend fun getSpecialDish(): NetworkResponse<DishResponse> {
+        val response = serviceApi.getSpecialDish()
+        return processApiResponse(response)
+    }
+
+    suspend fun getCategories(): NetworkResponse<List<CategoryResponse>> {
+        val response = serviceApi.getCategories()
+        return processApiResponse(response)
+    }
+
+
     private fun <T> processApiResponse(response: Response<T>): NetworkResponse<T> {
         return if (response.isSuccessful) {
             response.body()?.let { data ->
@@ -34,6 +47,8 @@ class ServiceController(
             NetworkResponse.Error(message = response.message())
         }
     }
+
+
 
 
 }

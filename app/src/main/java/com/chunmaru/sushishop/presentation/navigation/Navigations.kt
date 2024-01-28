@@ -72,7 +72,9 @@ fun ScreenNavigator() {
             )
         },
         onManagementMenu = {
-            ManagementMenuScreen()
+            ManagementMenuScreen(
+                onBackClick = { navigationState.navHostController.popBackStack() }
+            )
         }
     )
 

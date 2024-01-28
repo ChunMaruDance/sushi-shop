@@ -11,9 +11,9 @@ class DishResponse(
     val discount: Float,
     val weight: Float,
     val image: ByteArray,
-    val ingredients: List<String>,
-    val category: String
 ) {
+
+
 
     fun toDish(): Dish =
         Dish(
@@ -24,10 +24,7 @@ class DishResponse(
             discount = discount,
             weight = weight,
             image = image,
-            category = category,
-            ingredients = ingredients
         )
-
 
     companion object {
         fun List<DishResponse>.toDishList(): List<Dish> {
@@ -127,8 +124,6 @@ data class Dish(
     val discount: Float,
     val weight: Float,
     val image: ByteArray,
-    val category: String,
-    val ingredients: List<String>
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -142,8 +137,7 @@ data class Dish(
         if (price != other.price) return false
         if (discount != other.discount) return false
         if (weight != other.weight) return false
-        if (!image.contentEquals(other.image)) return false
-        return ingredients == other.ingredients
+        return image.contentEquals(other.image)
     }
 
     override fun hashCode(): Int {
@@ -154,7 +148,7 @@ data class Dish(
         result = 31 * result + discount.hashCode()
         result = 31 * result + weight.hashCode()
         result = 31 * result + image.contentHashCode()
-        result = 31 * result + ingredients.hashCode()
         return result
     }
+
 }
