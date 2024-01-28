@@ -20,6 +20,6 @@ sealed class Screen(val route: String) {
 
     object AdminScreen : Screen("admin")
 
-
+    object ManagementMenuScreen : Screen("menu management")
 
 }

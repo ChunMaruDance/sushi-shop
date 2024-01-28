@@ -104,6 +104,8 @@ private fun SuccessScreen(
     val animVisible = remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { animVisible.value = true }
 
+    val openBottomSheet = rememberSaveable { mutableStateOf(false) }
+
     AnimatedVisibility(
         modifier = Modifier.fillMaxSize(),
         visible = animVisible.value,
@@ -121,7 +123,9 @@ private fun SuccessScreen(
             HomeTopBar(
                 badgeCounter = ordersCounters.value,
                 onSearchClick = { },
-                onMoreClick = { /*...*/ },
+                onMoreClick = {
+                    openBottomSheet.value = true
+                },
                 onBasketClick = {
                     viewModel.putOrderInCurrentBackStack(
                         onSuccess = { onOrderNavigate() }
@@ -169,10 +173,6 @@ private fun SuccessScreen(
                 }
             }
         }
-    }
-
-    val openBottomSheet = rememberSaveable {
-        mutableStateOf(false)
     }
 
     if (openBottomSheet.value) {

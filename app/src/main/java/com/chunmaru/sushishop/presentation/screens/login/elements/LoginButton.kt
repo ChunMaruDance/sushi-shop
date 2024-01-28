@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.screens.login
+package com.chunmaru.sushishop.presentation.screens.login.elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

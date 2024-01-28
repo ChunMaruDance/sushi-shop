@@ -8,9 +8,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.chunmaru.sushishop.data.api.ServiceApi
-import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.storage.DataStoreManager
+import com.chunmaru.sushishop.presentation.screens.login.elements.LoginScreenContent
 
 @Composable
 fun LoginScreen(

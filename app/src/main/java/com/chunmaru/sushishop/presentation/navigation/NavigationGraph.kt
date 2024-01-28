@@ -19,7 +19,8 @@ fun NavigationGraph(
     onMap: @Composable () -> Unit,
     onCompleteOrders: @Composable () -> Unit,
     onLogin: @Composable () -> Unit,
-    onAdmin: @Composable () -> Unit
+    onAdmin: @Composable () -> Unit,
+    onManagementMenu: @Composable () -> Unit
 ) {
 
     NavHost(
@@ -36,6 +37,7 @@ fun NavigationGraph(
         composable(route = Screen.CompleteOrdersScreen.route) { onCompleteOrders() }
         composable(route = Screen.LoginScreen.route) { onLogin() }
         composable(route = Screen.AdminScreen.route) { onAdmin() }
+        composable(route = Screen.ManagementMenuScreen.route) { onManagementMenu() }
     }
 
 }

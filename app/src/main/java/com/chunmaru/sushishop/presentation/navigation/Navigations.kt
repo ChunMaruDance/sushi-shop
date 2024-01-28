@@ -6,6 +6,7 @@ import com.chunmaru.sushishop.presentation.screens.completed_orders.CompletedOrd
 import com.chunmaru.sushishop.presentation.screens.dish.DishScreen
 import com.chunmaru.sushishop.presentation.screens.home.HomeScreen
 import com.chunmaru.sushishop.presentation.screens.login.LoginScreen
+import com.chunmaru.sushishop.presentation.screens.management_menu.ManagementMenuScreen
 import com.chunmaru.sushishop.presentation.screens.map.MapScreen
 import com.chunmaru.sushishop.presentation.screens.order.OrderScreen
 import com.chunmaru.sushishop.presentation.screens.order_details.OrderDetailsScreen
@@ -20,7 +21,7 @@ fun ScreenNavigator() {
         navHostController = navigationState.navHostController,
         onHome = {
             HomeScreen(
-                 navigationState.navHostController,
+                navigationState.navHostController,
                 onDishNavigate = { navigationState.navigate(Screen.DishScreen.route) },
                 onOrderNavigate = { navigationState.navigate(Screen.OrderScreen.route) },
                 onLoginScreen = { navigationState.navigate(Screen.LoginScreen.route) }
@@ -57,11 +58,21 @@ fun ScreenNavigator() {
         onLogin = {
             LoginScreen(
                 navController = navigationState.navHostController,
-                onAdminNavigate = { navigationState.navigateTo(Screen.AdminScreen.route)}
+                onAdminNavigate = { navigationState.navigateTo(Screen.AdminScreen.route) }
             )
         },
         onAdmin = {
-            AdminScreen()
+            AdminScreen(
+                onManagementMenuNavigate = { navigationState.navigate(Screen.ManagementMenuScreen.route) },
+                onBackNavigate = { navigationState.navHostController.popBackStack() },
+                onChangeProfileNavigate = {},
+                onOrdersHistoryNavigate = {},
+                onActiveOrdersNavigate = {},
+                onStatisticsNavigate = {}
+            )
+        },
+        onManagementMenu = {
+            ManagementMenuScreen()
         }
     )
 

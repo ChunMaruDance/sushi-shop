@@ -122,7 +122,7 @@ class DataStoreManager(
         }
     }
 
-    suspend fun removeToken() {
+    suspend fun removeAdminToken() {
         context.dataStore.edit { pref ->
             pref[stringPreferencesKey(KEY_TO_ADMIN_TOKEN)] = ""
         }
