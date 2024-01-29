@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -45,7 +46,7 @@ fun LoginScreenContent(
     login: String,
     passwordChange: (String) -> Unit,
     loginChange: (String) -> Unit,
-    checkSignIn:  () -> Unit
+    checkSignIn: () -> Unit
 ) {
 
     val passwordState = remember {
@@ -78,14 +79,21 @@ fun LoginScreenContent(
 
         Text(
             text = "Welcome Back!",
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            color = Color.Black
+            style = TextStyle(
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Serif,
+                fontSize = 32.sp,
+                color = Color.Black,
+            )
         )
         Text(
             text = "Enter your Login & Password",
-            fontSize = 16.sp,
-            color = Gray120
+
+            style = TextStyle(
+                fontFamily = FontFamily.Serif,
+                fontSize = 16.sp,
+                color = Gray120,
+            )
         )
 
         TextField(
@@ -104,7 +112,15 @@ fun LoginScreenContent(
                 focusedTextColor = Color.Black,
                 unfocusedTextColor = Gray120
             ),
-            placeholder = { Text(text = "Login", color = Gray120) }
+            placeholder = {
+                Text(
+                    text = "Login",
+                    style = TextStyle(
+                        fontFamily = FontFamily.Serif,
+                        color = Gray120,
+                    )
+                )
+            }
         )
 
         TextField(
@@ -125,7 +141,15 @@ fun LoginScreenContent(
             ),
             visualTransformation = if (passwordState.value) VisualTransformation.None
             else PasswordVisualTransformation(),
-            placeholder = { Text(text = "Password", color = Gray120) },
+            placeholder = {
+                Text(
+                    text = "Password",
+                    style = TextStyle(
+                        fontFamily = FontFamily.Serif,
+                        color = Gray120,
+                    )
+                )
+            },
             trailingIcon = {
                 IconButton(onClick = {
                     passwordState.value = !passwordState.value
@@ -140,6 +164,8 @@ fun LoginScreenContent(
                 }
             }
         )
+
+
 
         DefaultButton(
             modifier = Modifier
@@ -157,6 +183,7 @@ fun LoginScreenContent(
                 .padding(top = 4.dp, bottom = 30.dp)
                 .align(Alignment.CenterHorizontally),
             style = TextStyle(
+                fontFamily = FontFamily.Serif,
                 lineHeight = 14.sp,
                 fontSize = 12.sp,
                 color = Gray120,

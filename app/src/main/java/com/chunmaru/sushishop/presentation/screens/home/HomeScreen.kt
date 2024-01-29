@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -136,9 +137,12 @@ private fun SuccessScreen(
             Text(
                 modifier = Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp),
                 text = "What would you\nlike to order?",
-                color = Gray30,
-                fontSize = 26.sp,
-                style = TextStyle(lineHeight = 32.sp),
+                style = TextStyle(
+                    color = Gray30,
+                    fontSize = 26.sp,
+                    lineHeight = 32.sp,
+                    fontFamily = FontFamily.Serif,
+                ),
             )
 
             when (val categoryState = currentState.data) {
@@ -178,12 +182,12 @@ private fun SuccessScreen(
     if (openBottomSheet.value) {
         ModalBottomSheet(
             onDismissRequest = { openBottomSheet.value = false },
-            containerColor = MaterialTheme.colorScheme.onBackground
+            containerColor = MaterialTheme.colorScheme.onBackground,
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 50.dp),
+                    .padding(bottom = 50.dp, start = 8.dp, end = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = {
@@ -199,8 +203,11 @@ private fun SuccessScreen(
                 }
                 Text(
                     text = "Admin panel",
-                    fontSize = 21.sp,
-                    color = Gray30
+                    style = TextStyle(
+                        fontFamily = FontFamily.Serif,
+                        fontSize = 21.sp,
+                        color = Gray30,
+                    )
                 )
             }
         }

@@ -20,9 +20,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -100,9 +103,12 @@ private fun AdminScreenContent(
 
         Text(
             text = "PROFILE",
-            color = Color.Black,
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
+            style = TextStyle(
+                fontFamily = FontFamily.Serif,
+                color = Color.Black,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
+            ),
             modifier = Modifier.padding(bottom = 26.dp, top = 6.dp)
         )
 
@@ -117,13 +123,17 @@ private fun AdminScreenContent(
 
             Card(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(10))
                     .fillMaxWidth()
-                    .background(color = Color(250, 250, 250)),
+                    .shadow(
+                        elevation = 3.dp,
+                        ambientColor = Color(204, 204, 0),
+                        spotColor = Color(204, 204, 0),
+                        shape = RoundedCornerShape(15)
+                    ),
                 colors = CardDefaults.cardColors(
                     containerColor = Color(250, 250, 250),
                 ),
-                shape = RoundedCornerShape(10),
+                shape = RoundedCornerShape(15),
             ) {
 
 

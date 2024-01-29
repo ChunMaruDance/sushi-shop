@@ -14,8 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -30,7 +33,12 @@ fun AdminCard(
         modifier = Modifier
             .padding(top = 18.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(30))
+            .shadow(
+                elevation = 1.dp,
+                ambientColor = Color(204, 204, 0),
+                spotColor = Color(204, 204, 0),
+                shape = RoundedCornerShape(30)
+            )
             .clickable { onClick() },
         colors = CardDefaults.cardColors(
             containerColor = Color(250, 250, 250)
@@ -50,8 +58,13 @@ fun AdminCard(
                 tint = Color.Black
             )
             Text(
-                text = tittle, color = Color.Black, fontSize = 21.sp,
-                modifier = Modifier.padding(start = 12.dp)
+                text = tittle,
+                modifier = Modifier.padding(start = 12.dp),
+                style = TextStyle(
+                    fontFamily = FontFamily.Serif,
+                    color = Color.Black,
+                    fontSize = 21.sp,
+                )
             )
 
         }

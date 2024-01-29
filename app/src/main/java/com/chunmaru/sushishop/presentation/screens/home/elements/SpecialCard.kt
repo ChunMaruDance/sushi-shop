@@ -25,7 +25,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
@@ -40,8 +42,11 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
     Text(
         text = "Special for you",
         modifier = Modifier.padding(start = 16.dp, top = 26.dp, bottom = 12.dp),
-        color = Gray30,
-        fontSize = 22.sp,
+        style = TextStyle(
+            fontFamily = FontFamily.Serif,
+            color = Gray30,
+            fontSize = 22.sp,
+        )
     )
     Card(
         modifier = Modifier
@@ -88,14 +93,21 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
             ) {
                 Text(
                     text = "Only today ${discount}% OFF!",
-                    color = Gray30,
-                    fontSize = 12.sp,
+                    style = TextStyle(
+                        color = Gray30,
+                        fontSize = 12.sp,
+                        fontFamily = FontFamily.Serif
+                    )
                 )
                 Text(
                     text = dish,
-                    color = Gray30,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.W600
+
+                    style = TextStyle(
+                        color = Gray30,
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily.Serif,
+                        fontWeight = FontWeight.W600,
+                    )
                 )
                 androidx.compose.material.Text(
                     text = buildAnnotatedString {
@@ -114,14 +126,14 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
                 )
             }
 
-                IconButton(onClick = {}) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.rightarrow),
-                        contentDescription = "arrow",
-                        modifier = Modifier
-                            .size(20.dp)
-                    )
-                }
+            IconButton(onClick = {}) {
+                Icon(
+                    painter = painterResource(id = R.drawable.rightarrow),
+                    contentDescription = "arrow",
+                    modifier = Modifier
+                        .size(20.dp)
+                )
+            }
 
 
         }

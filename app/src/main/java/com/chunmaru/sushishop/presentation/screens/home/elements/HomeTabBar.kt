@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chunmaru.sushishop.ui.theme.Gray30
@@ -58,11 +60,14 @@ fun TabBarItemCard(
     ) {
         Text(
             text = title,
-            fontSize = 18.sp,
             color = if (isActive) Gray30 else Gray120,
             modifier = Modifier.clickable {
                 onItemClick(title)
-            }
+            },
+            style = TextStyle(
+                fontSize = 18.sp,
+                fontFamily = FontFamily.Serif,
+            ),
         )
         if (isActive) {
             Box(
