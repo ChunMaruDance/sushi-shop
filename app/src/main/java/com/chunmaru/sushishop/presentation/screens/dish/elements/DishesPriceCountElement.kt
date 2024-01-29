@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -47,9 +48,8 @@ fun DishesPriceCountElement(
             text = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
-                        fontSize = 24.sp,
+                        fontSize = 16.sp,
                         baselineShift = BaselineShift.Superscript,
-                        fontWeight = FontWeight.Medium
                     )
                 ) {
                     append("$")
@@ -57,7 +57,7 @@ fun DishesPriceCountElement(
                 append(price.toString())
             },
             color = Gray30,
-            fontSize = 34.sp,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold
 
         )
@@ -79,39 +79,44 @@ fun ButtonsAddRemove(
     onRemoveClick: () -> Unit
 ) {
 
-        Row(
-            modifier = Modifier
-                .clip(RoundedCornerShape(40))
-                .background(Color(247, 247, 247)),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            IconButton(onClick = { onRemoveClick() }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.minus),
-                    contentDescription = "remove icon",
-                    Modifier.size(20.dp),
-                    tint = if (count == 1) Gray120 else Gray30
-                )
-            }
-
-            Text(
-                text = count.toString(),
-                color = Gray30,
-                fontSize = 23.sp
+    Row(
+        modifier = Modifier
+            .shadow(
+                elevation = 2.dp,
+                ambientColor = Color(204, 204, 0),
+                spotColor = Color(204, 204, 0),
+                shape = RoundedCornerShape(30.dp)
             )
+            .background(Color(247, 247, 247)),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
 
-            IconButton(onClick = { onAddClick() }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.plus2),
-                    contentDescription = "add icon",
-                    Modifier.size(20.dp),
-                    tint = Gray30
-                )
-            }
-
-
+        IconButton(onClick = { onRemoveClick() }) {
+            Icon(
+                painter = painterResource(id = R.drawable.minus),
+                contentDescription = "remove icon",
+                Modifier.size(20.dp),
+                tint = if (count == 1) Gray120 else Gray30
+            )
         }
+
+        Text(
+            text = count.toString(),
+            color = Gray30,
+            fontSize = 23.sp
+        )
+
+        IconButton(onClick = { onAddClick() }) {
+            Icon(
+                painter = painterResource(id = R.drawable.plus2),
+                contentDescription = "add icon",
+                Modifier.size(20.dp),
+                tint = Gray30
+            )
+        }
+
+
+    }
 
 
 }

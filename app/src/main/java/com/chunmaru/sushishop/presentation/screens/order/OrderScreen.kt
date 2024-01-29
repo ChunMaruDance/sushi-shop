@@ -36,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -105,9 +106,14 @@ private fun OrderScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 14.dp, end = 14.dp, bottom = 7.dp)
-                        .clip(RoundedCornerShape(20))
                         .background(color = Color.Transparent)
                         .height(60.dp)
+                        .shadow(
+                            elevation = 5.dp,
+                            ambientColor = Color.Gray,
+                            spotColor = Color.Gray,
+                            shape = RoundedCornerShape(15.dp)
+                        )
                         .clickable {
                             viewModel.putInCurrentBackStackToOrderDetails(
                                 onSuccess = { onOrderDetails() }
@@ -178,8 +184,13 @@ private fun OrderScreenContent(
                             Card(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .clip(RoundedCornerShape(15)),
-                                shape = RoundedCornerShape(15),
+                                    .shadow(
+                                        elevation = 2.dp,
+                                        ambientColor = Color(204, 204, 0),
+                                        spotColor = Color(204, 204, 0),
+                                        shape = RoundedCornerShape(15.dp)
+                                    ),
+                                shape = RoundedCornerShape(15.dp),
                                 colors = CardDefaults.cardColors(
                                     containerColor = Color(255, 225, 225)
                                 )

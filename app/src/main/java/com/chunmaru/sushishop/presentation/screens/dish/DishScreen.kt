@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -100,17 +102,14 @@ private fun DishScreenSuccess(
                 )
             }
             item {
-                DishTextInfo(
-                    title = dish.name,
-                    category = dish.category
-                )
-            }
-            item {
                 DishImageWithIngredients(
                     image = dish.image,
-                    ingredients = ingredients
+                    ingredients = ingredients,
+                    dishName = dish.name,
+                    dishCategory = dish.category
                 )
             }
+
             item {
                 DishesPriceCountElement(
                     count = counter,
@@ -182,7 +181,10 @@ fun DishTextInfo(
 ) {
     Text(
         text = category,
-        fontSize = 21.sp,
+        fontSize = 16.sp,
+        style = TextStyle(
+            fontFamily = FontFamily.Serif
+        ),
         modifier = Modifier
             .padding(top = 21.dp),
         color = Color(204, 204, 0)
@@ -191,7 +193,10 @@ fun DishTextInfo(
     Text(
         text = title,
         color = Gray30,
-        fontSize = 32.sp,
+        fontSize = 26.sp,
+        style = TextStyle(
+            fontFamily = FontFamily.Serif
+        ),
         maxLines = 2,
         fontWeight = FontWeight.Bold,
         overflow = TextOverflow.Ellipsis
