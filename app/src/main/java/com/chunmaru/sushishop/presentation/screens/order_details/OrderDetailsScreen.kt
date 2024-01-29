@@ -1,5 +1,6 @@
 package com.chunmaru.sushishop.presentation.screens.order_details
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,6 +24,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -36,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -55,6 +59,7 @@ import com.chunmaru.sushishop.presentation.screens.order_details.elements.Bottom
 import com.chunmaru.sushishop.presentation.screens.order_details.elements.DefaultAlertDialog
 import com.chunmaru.sushishop.ui.theme.Gray120
 import com.chunmaru.sushishop.ui.theme.Gray30
+import com.chunmaru.sushishop.ui.theme.Gray70
 
 @Composable
 fun OrderDetailsScreen(
@@ -103,7 +108,7 @@ fun OrderDetailsScreen(
             ) {
 
                 DefaultTopBar(title = "Order Details",
-                    onMoreClick = {  },
+                    onMoreClick = { },
                     onBackClick = { navController.popBackStack() }
                 )
 
@@ -325,23 +330,46 @@ fun OrderDetailsScreen(
                 )
 
 
-                Text(
-                    modifier = Modifier.padding(start = 12.dp, top = 24.dp),
-                    text = buildAnnotatedString {
-                        append("Sum : ${currentState.price}")
-                        withStyle(
-                            style = SpanStyle(
-                                fontSize = 13.sp,
-                                baselineShift = BaselineShift.Superscript,
-                            )
-                        ) {
-                            append("$")
-                        }
-
-                    },
-                    color = Gray30,
-                    fontSize = 21.sp,
+                Divider(
+                    color = Gray120,
+                    modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 12.dp)
                 )
+
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Text(
+                        text = "Total", fontSize = 21.sp,
+                        color = Gray70,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    Text(
+                        modifier = Modifier.padding(top = 12.dp),
+                        text = buildAnnotatedString {
+                            append(currentState.price)
+                            withStyle(
+                                style = SpanStyle(
+                                    fontSize = 13.sp,
+                                    baselineShift = BaselineShift.Superscript,
+                                )
+                            ) {
+                                append("$")
+                            }
+
+                        },
+                        color = Gray30,
+                        fontSize = 21.sp,
+                    )
+
+                }
+
+
 
                 Text(
                     text = "Payment upon receipt !!!",

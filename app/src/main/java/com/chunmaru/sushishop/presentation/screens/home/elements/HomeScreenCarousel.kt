@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -24,13 +25,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -138,10 +142,12 @@ fun ColumnScope.HomeCarouselCard(
             .size(180.dp),
         contentScale = ContentScale.Crop
     )
-
     Text(
         text = dish.category,
         fontSize = 14.sp,
+        style = TextStyle(
+            fontFamily = FontFamily.Serif
+        ),
         modifier = Modifier
             .padding(start = 8.dp)
             .align(Alignment.Start)
@@ -152,6 +158,9 @@ fun ColumnScope.HomeCarouselCard(
     Text(
         text = dish.name,
         fontSize = 18.sp,
+        style = TextStyle(
+            fontFamily = FontFamily.Serif
+        ),
         modifier = Modifier
             .padding(start = 8.dp)
             .align(Alignment.Start)
@@ -185,7 +194,14 @@ fun ColumnScope.HomeCarouselCard(
             Icon(
                 painter = painterResource(id = R.drawable.plus),
                 contentDescription = "add to Basket",
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier
+                    .size(40.dp)
+                    .shadow(
+                        elevation = 7.dp,
+                        ambientColor = Color.Gray,
+                        spotColor = Color.Gray,
+                        shape = CircleShape
+                    )
             )
 
         }

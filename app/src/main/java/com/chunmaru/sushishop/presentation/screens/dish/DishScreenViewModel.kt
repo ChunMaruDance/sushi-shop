@@ -43,7 +43,7 @@ class DishScreenViewModel @Inject constructor(
         )?.let { dish ->
             _state.value = ScreenState.Success(
                 DishWIthIngredients(
-                    dishWithCounter = DishWithCounter(dish, 0),
+                    dishWithCounter = DishWithCounter(dish, 1),
                     ingredientsData = listOf(
                         IngredientsData(
                             name = "Onigiry",

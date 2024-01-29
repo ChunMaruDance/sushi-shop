@@ -92,7 +92,6 @@ private fun DishScreenSuccess(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 12.dp)
         ) {
             item {
                 DefaultTopBar(
@@ -163,13 +162,19 @@ private fun DescriptionSection(dish: TestDish) {
         text = "Description",
         color = Gray30,
         fontWeight = FontWeight.Bold,
+        style = TextStyle(
+            fontFamily = FontFamily.Serif
+        ),
         fontSize = 23.sp,
-        modifier = Modifier.padding(top = 15.dp, bottom = 5.dp)
+        modifier = Modifier.padding(top = 15.dp, bottom = 5.dp, start = 12.dp, end = 12.dp)
     )
     Text(
         text = dish.descriptions,
         color = Gray120,
-        modifier = Modifier.padding(bottom = 50.dp),
+        style = TextStyle(
+            fontFamily = FontFamily.Serif
+        ),
+        modifier = Modifier.padding(bottom = 50.dp, start = 12.dp, end = 12.dp),
         fontSize = 14.sp
     )
 }
@@ -182,23 +187,26 @@ fun DishTextInfo(
     Text(
         text = category,
         fontSize = 16.sp,
+        modifier = Modifier
+            .padding(top = 21.dp, start = 12.dp, end = 12.dp),
         style = TextStyle(
             fontFamily = FontFamily.Serif
         ),
-        modifier = Modifier
-            .padding(top = 21.dp),
         color = Color(204, 204, 0)
     )
 
     Text(
+        modifier = Modifier
+            .padding(start = 12.dp, end = 12.dp),
         text = title,
-        color = Gray30,
-        fontSize = 26.sp,
         style = TextStyle(
-            fontFamily = FontFamily.Serif
+            fontFamily = FontFamily.Serif,
+            color = Gray30,
+            fontSize = 26.sp,
+            fontWeight = FontWeight.Bold,
         ),
         maxLines = 2,
-        fontWeight = FontWeight.Bold,
         overflow = TextOverflow.Ellipsis
+
     )
 }

@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -45,6 +46,12 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
     Card(
         modifier = Modifier
             .padding(horizontal = 16.dp)
+            .shadow(
+                elevation = 1.dp,
+                ambientColor = Color(204, 204, 0),
+                spotColor = Color(204, 204, 0),
+                shape = RoundedCornerShape(20.dp)
+            )
             .fillMaxWidth()
             .background(Color.Transparent),
         shape = RoundedCornerShape(20.dp),

@@ -21,7 +21,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
@@ -49,7 +51,9 @@ fun OrderCard(
     ) {
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(3.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
@@ -80,14 +84,20 @@ fun OrderCard(
 
                 Text(
                     text = dishWithCounter.dish.category,
-                    color = Gray120,
                     fontSize = 12.sp,
+                    style = TextStyle(
+                        fontFamily = FontFamily.Serif
+                    ),
+                    color = Color(204, 204, 0),
                     fontWeight = FontWeight.W600
                 )
                 Text(
                     text = dishWithCounter.dish.name,
                     color = Gray30,
                     fontSize = 16.sp,
+                    style = TextStyle(
+                        fontFamily = FontFamily.Serif
+                    ),
                     fontWeight = FontWeight.W600
                 )
                 androidx.compose.material.Text(

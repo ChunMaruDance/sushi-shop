@@ -38,7 +38,7 @@ fun DishesPriceCountElement(
 
     Row(
         modifier = Modifier
-            .padding(top = 6.dp)
+            .padding(top = 6.dp, start = 12.dp, end = 12.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
