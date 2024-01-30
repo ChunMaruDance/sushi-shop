@@ -1,9 +1,8 @@
 package com.chunmaru.sushishop.presentation.screens.home.elements
 
-import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,11 +32,14 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.chunmaru.sushishop.R
+import com.chunmaru.sushishop.data.convertImageByteArrayToBitmap
+import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.ui.theme.Gray30
 
 @Composable
-fun SpecialCard(img: Int, discount: Int, dish: String) {
+fun SpecialCard(dish: Dish) {
 
     Text(
         text = "Special for you",
@@ -79,8 +81,8 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
             horizontalArrangement = Arrangement.SpaceAround
         ) {
 
-            Image(
-                painter = painterResource(id = img),
+            AsyncImage(
+                model = dish.image.convertImageByteArrayToBitmap(),
                 contentDescription = "special dish image",
                 modifier = Modifier.size(100.dp),
                 contentScale = ContentScale.Crop
@@ -92,7 +94,7 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
                     .offset(y = 10.dp)
             ) {
                 Text(
-                    text = "Only today ${discount}% OFF!",
+                    text = "Only today ${dish.discount}% OFF!",
                     style = TextStyle(
                         color = Gray30,
                         fontSize = 12.sp,
@@ -100,7 +102,7 @@ fun SpecialCard(img: Int, discount: Int, dish: String) {
                     )
                 )
                 Text(
-                    text = dish,
+                    text = dish.name,
 
                     style = TextStyle(
                         color = Gray30,

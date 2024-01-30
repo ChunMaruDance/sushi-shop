@@ -63,7 +63,7 @@ fun DefaultTopBarItem(
         modifier = Modifier
             .size(42.dp)
             .shadow(
-                elevation = 2.dp,
+                elevation = 3.dp,
                 ambientColor = Color(204, 204, 0),
                 spotColor = Color(204, 204, 0),
                 shape = CircleShape

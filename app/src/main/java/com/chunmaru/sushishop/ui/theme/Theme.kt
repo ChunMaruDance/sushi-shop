@@ -56,8 +56,11 @@ fun SushiShopTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = Color(16, 16, 16).toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            window.statusBarColor = if (darkTheme) Gray30.toArgb() else onGrayBackground.toArgb()
+            window.navigationBarColor =
+                if (darkTheme) Gray30.toArgb() else onGrayBackground.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
+                !darkTheme
         }
     }
 

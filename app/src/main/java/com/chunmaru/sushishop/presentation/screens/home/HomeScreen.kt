@@ -52,7 +52,8 @@ fun HomeScreen(
     navController: NavController,
     onDishNavigate: () -> Unit,
     onOrderNavigate: () -> Unit,
-    onLoginScreen: () -> Unit
+    onLoginNavigate: () -> Unit,
+    onSearchNavigate: () -> Unit
 ) {
     val viewModel: HomeScreenViewModel = hiltViewModel()
     viewModel.initController(navController)
@@ -68,7 +69,14 @@ fun HomeScreen(
         }
 
         is ScreenState.Success -> {
-            SuccessScreen(viewModel, currentState, onDishNavigate, onOrderNavigate, onLoginScreen)
+            SuccessScreen(
+                viewModel,
+                currentState,
+                onDishNavigate,
+                onOrderNavigate,
+                onLoginNavigate,
+                onSearchNavigate
+            )
         }
     }
 }
@@ -100,7 +108,8 @@ private fun SuccessScreen(
     currentState: ScreenState.Success<CategoryState>,
     onDishNavigate: () -> Unit,
     onOrderNavigate: () -> Unit,
-    onLoginScreen: () -> Unit
+    onLoginNavigate: () -> Unit,
+    onSearchNavigate: () -> Unit
 ) {
     val animVisible = remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { animVisible.value = true }
@@ -123,7 +132,7 @@ private fun SuccessScreen(
         ) {
             HomeTopBar(
                 badgeCounter = ordersCounters.value,
-                onSearchClick = { },
+                onSearchClick = { onSearchNavigate() },
                 onMoreClick = {
                     openBottomSheet.value = true
                 },
@@ -154,7 +163,7 @@ private fun SuccessScreen(
                         onItemClick = { viewModel.changeCategory(it) }
                     )
 
-                    SpecialCard(img = R.drawable.test2, discount = 12, dish = "dishi2")
+                    //       SpecialCard(img = R.drawable.test2, discount = 12, dish = "dishi2")
                 }
 
                 is CategoryState.ShowCategory -> {
@@ -173,7 +182,8 @@ private fun SuccessScreen(
                                 })
                         }
                     )
-                    SpecialCard(img = R.drawable.test2, discount = 12, dish = "dishi")
+                    //todo
+                    //         SpecialCard(img = R.drawable.test2, discount = 12, dish = "dishi")
                 }
             }
         }
@@ -191,7 +201,7 @@ private fun SuccessScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = {
-                    onLoginScreen()
+                    onLoginNavigate()
                     openBottomSheet.value = false
                 }) {
                     Icon(

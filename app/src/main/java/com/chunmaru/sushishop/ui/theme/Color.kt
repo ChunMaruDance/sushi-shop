@@ -10,6 +10,8 @@ val GrayBackground = Color(16, 16, 16)
 val onGrayBackground = Color(242, 242, 242)
 
 
+
+
 val Gray30 = Color(30, 30, 30)
 val Gray70 = Color(70, 70, 70)
 val Gray120 = Color(120, 120, 120)

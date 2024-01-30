@@ -22,4 +22,11 @@ sealed class Screen(val route: String) {
 
     object ManagementMenuScreen : Screen("menu management")
 
+    object SearchScreen : Screen("search")
+
+    object CategoryScreen : Screen("category")
+
+    object AddRenderDishScreen:Screen("add render dish")
+
+
 }

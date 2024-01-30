@@ -20,7 +20,10 @@ fun NavigationGraph(
     onCompleteOrders: @Composable () -> Unit,
     onLogin: @Composable () -> Unit,
     onAdmin: @Composable () -> Unit,
-    onManagementMenu: @Composable () -> Unit
+    onManagementMenu: @Composable () -> Unit,
+    onSearch: @Composable () -> Unit,
+    onCategory: @Composable () -> Unit,
+    onAddRenderDish: @Composable () -> Unit
 ) {
 
     NavHost(
@@ -38,6 +41,9 @@ fun NavigationGraph(
         composable(route = Screen.LoginScreen.route) { onLogin() }
         composable(route = Screen.AdminScreen.route) { onAdmin() }
         composable(route = Screen.ManagementMenuScreen.route) { onManagementMenu() }
+        composable(route = Screen.SearchScreen.route) { onSearch() }
+        composable(route = Screen.CategoryScreen.route) { onCategory() }
+        composable(route = Screen.AddRenderDishScreen.route) { onAddRenderDish() }
     }
 
 }

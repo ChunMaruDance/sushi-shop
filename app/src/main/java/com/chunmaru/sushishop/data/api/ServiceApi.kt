@@ -1,6 +1,7 @@
 package com.chunmaru.sushishop.data.api
 
 import com.chunmaru.sushishop.data.models.CategoryResponse
+import com.chunmaru.sushishop.data.models.IngredientResponse
 import com.chunmaru.sushishop.data.models.admin.AdminResponse
 import com.chunmaru.sushishop.data.models.dishes.DishReceive
 import com.chunmaru.sushishop.data.models.dishes.DishResponse
@@ -43,13 +44,18 @@ interface ServiceApi {
         @Query("Bearer-Authorization") token: String
     ): Response<AdminResponse>
 
-
     @GET("/dishes/special")
     suspend fun getSpecialDish(): Response<DishResponse>
 
     @GET("/dishes/categories/get")
     suspend fun getCategories(): Response<List<CategoryResponse>>
 
+    //todo
+    @GET("/dishes/recommended")
+    suspend fun getRecommended(): Response<List<DishResponse>>
+
+    @GET("/dishes/ingredients")
+    suspend fun getAllIngredients(): Response<List<IngredientResponse>>
 
 }
 

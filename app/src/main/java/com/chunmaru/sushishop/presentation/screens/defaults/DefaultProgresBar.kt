@@ -24,9 +24,9 @@ fun DefaultProgressBar() {
             color = Color.Black,
             strokeWidth = 2.dp,
             modifier = Modifier.size(70.dp),
-            trackColor = Color(204, 204, 0)
+            trackColor = Color(204, 204, 0).copy(alpha = 0.2f)
         )
-        
+
 
     }
 

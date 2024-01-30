@@ -1,7 +1,9 @@
 package com.chunmaru.sushishop.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import com.chunmaru.sushishop.presentation.screens.add_render_dish.AddDishScreen
 import com.chunmaru.sushishop.presentation.screens.admin.AdminScreen
+import com.chunmaru.sushishop.presentation.screens.category.CategoryScreen
 import com.chunmaru.sushishop.presentation.screens.completed_orders.CompletedOrders
 import com.chunmaru.sushishop.presentation.screens.dish.DishScreen
 import com.chunmaru.sushishop.presentation.screens.home.HomeScreen
@@ -10,6 +12,7 @@ import com.chunmaru.sushishop.presentation.screens.management_menu.ManagementMen
 import com.chunmaru.sushishop.presentation.screens.map.MapScreen
 import com.chunmaru.sushishop.presentation.screens.order.OrderScreen
 import com.chunmaru.sushishop.presentation.screens.order_details.OrderDetailsScreen
+import com.chunmaru.sushishop.presentation.screens.search.SearchScreen
 import com.chunmaru.sushishop.presentation.screens.splash.SplashScreen
 
 @Composable
@@ -24,7 +27,8 @@ fun ScreenNavigator() {
                 navigationState.navHostController,
                 onDishNavigate = { navigationState.navigate(Screen.DishScreen.route) },
                 onOrderNavigate = { navigationState.navigate(Screen.OrderScreen.route) },
-                onLoginScreen = { navigationState.navigate(Screen.LoginScreen.route) }
+                onLoginNavigate = { navigationState.navigate(Screen.LoginScreen.route) },
+                onSearchNavigate = { navigationState.navigate(Screen.SearchScreen.route) }
             )
         },
         onSplash = {
@@ -73,8 +77,18 @@ fun ScreenNavigator() {
         },
         onManagementMenu = {
             ManagementMenuScreen(
-                onBackClick = { navigationState.navHostController.popBackStack() }
+                onBackClick = { navigationState.navHostController.popBackStack() },
+                onAddRenderDish = { navigationState.navigate(Screen.AddRenderDishScreen.route) }
             )
+        },
+        onSearch = {
+            SearchScreen()
+        },
+        onCategory = {
+            CategoryScreen()
+        },
+        onAddRenderDish = {
+            AddDishScreen()
         }
     )
 

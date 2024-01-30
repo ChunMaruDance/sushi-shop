@@ -10,7 +10,9 @@ import com.chunmaru.sushishop.data.models.CategoryResponse
 import com.chunmaru.sushishop.data.models.CategoryResponse.CREATOR.toCategoriesList
 import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishResponse
+import com.chunmaru.sushishop.data.models.dishes.Ingredients
 import com.chunmaru.sushishop.data.models.dishes.TestDish
+import com.chunmaru.sushishop.data.models.toIngredients
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -40,10 +42,11 @@ class ManagementScreenViewModel @Inject constructor(
 
             val responseSpecialDish = serviceController.getSpecialDish()
             val responseCategories = serviceController.getCategories()
+            val responseIngredients = serviceController.getIngredients()
 
             var categories = listOf<Category>()
-            var specialDish: Dish? = null;
-
+            var specialDish: Dish? = null
+            var ingredients = listOf<Ingredients>()
             when (responseCategories) {
                 is NetworkResponse.Error -> {
                     Log.d("MyTag", "initCategories: error ")
@@ -62,14 +65,27 @@ class ManagementScreenViewModel @Inject constructor(
                 else -> Unit
             }
 
+            when (responseIngredients) {
+                is NetworkResponse.Error -> {
+                    Log.d("MyTag", "init: error ingredients ")
+                }
+
+                is NetworkResponse.Success -> {
+                    ingredients = responseIngredients.data.toIngredients()
+                }
+            }
+
+
 
             Log.d("MyTag", "init: $categories ")
             Log.d("MyTag", "init: $specialDish ")
+            Log.d("MyTag", "init: $ingredients ")
 
             _state.value = ScreenState.Success(
                 ManagementData(
                     specialDish = specialDish,
-                    allCategory = categories
+                    allCategory = categories,
+                    ingredient = ingredients
                 )
             )
 
@@ -83,5 +99,6 @@ class ManagementScreenViewModel @Inject constructor(
 
 data class ManagementData(
     val specialDish: Dish?,
-    val allCategory: List<Category>
+    val allCategory: List<Category>,
+    val ingredient: List<Ingredients>
 )
