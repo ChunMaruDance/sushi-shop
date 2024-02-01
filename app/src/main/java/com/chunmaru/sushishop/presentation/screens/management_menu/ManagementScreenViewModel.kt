@@ -38,7 +38,6 @@ class ManagementScreenViewModel @Inject constructor(
     private fun init() {
         _state.value = ScreenState.Pending()
         viewModelScope.launch(Dispatchers.IO) {
-            delay(1000)
 
             val responseSpecialDish = serviceController.getSpecialDish()
             val responseCategories = serviceController.getCategories()

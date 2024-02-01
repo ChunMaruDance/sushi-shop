@@ -8,59 +8,66 @@ import com.chunmaru.sushishop.data.models.dishes.DishResponse
 import com.chunmaru.sushishop.data.models.login.LoginReceive
 import com.chunmaru.sushishop.data.models.login.LoginResponse
 import retrofit2.Response
+import java.net.SocketTimeoutException
 
 class ServiceController(
     private val serviceApi: ServiceApi
 ) {
 
     suspend fun getDishesByCategory(category: String): NetworkResponse<List<DishResponse>> {
-        val response = serviceApi.getDishesByCategory(category)
-        return processApiResponse(response)
+        return processApiResponse { serviceApi.getDishesByCategory(category) }
     }
 
     suspend fun login(password: String, login: String): NetworkResponse<LoginResponse> {
-        val response = serviceApi.login(LoginReceive(login = login, password = password))
-        return processApiResponse(response)
-    }
-
-    suspend fun getAdminProfile(token: String): NetworkResponse<AdminResponse> {
-        val response = serviceApi.getProfile(token)
-        return processApiResponse(response)
-    }
-
-    suspend fun getSpecialDish(): NetworkResponse<DishResponse> {
-        val response = serviceApi.getSpecialDish()
-        return processApiResponse(response)
-    }
-
-    suspend fun getCategories(): NetworkResponse<List<CategoryResponse>> {
-        val response = serviceApi.getCategories()
-        return processApiResponse(response)
-    }
-
-    suspend fun getRecommendedDishes(): NetworkResponse<List<DishResponse>> {
-        val response = serviceApi.getRecommended()
-        return processApiResponse(response)
-    }
-
-    suspend  fun getIngredients(): NetworkResponse<List<IngredientResponse>> {
-        val response = serviceApi.getAllIngredients()
-        return processApiResponse(response)
-    }
-
-
-
-
-    private fun <T> processApiResponse(response: Response<T>): NetworkResponse<T> {
-        return if (response.isSuccessful) {
-            response.body()?.let { data ->
-                NetworkResponse.Success(data)
-            } ?: NetworkResponse.Error(message = "Response body is null")
-        } else {
-            NetworkResponse.Error(message = response.message())
+        return processApiResponse {
+            serviceApi.login(
+                LoginReceive(
+                    login = login,
+                    password = password
+                )
+            )
         }
     }
 
+    suspend fun getAdminProfile(token: String): NetworkResponse<AdminResponse> {
+        return processApiResponse { serviceApi.getProfile(token) }
+    }
+
+    suspend fun getSpecialDish(): NetworkResponse<DishResponse> {
+        return processApiResponse { serviceApi.getSpecialDish() }
+    }
+
+    suspend fun getCategories(): NetworkResponse<List<CategoryResponse>> {
+        return processApiResponse { serviceApi.getCategories() }
+    }
+
+    suspend fun getRecommendedDishes(): NetworkResponse<List<DishResponse>> {
+        return processApiResponse { serviceApi.getRecommended() }
+    }
+
+    suspend fun getIngredients(): NetworkResponse<List<IngredientResponse>> {
+        return processApiResponse { serviceApi.getAllIngredients() }
+    }
+
+    private suspend fun <T> processApiResponse(block: suspend () -> Response<T>): NetworkResponse<T> {
+        return try {
+            val response = block()
+            return if (response.isSuccessful) {
+                response.body()?.let { data ->
+                    NetworkResponse.Success(data)
+                } ?: NetworkResponse.Error(message = "Response body is null")
+            } else {
+                NetworkResponse.Error(message = response.message())
+            }
+        } catch (e: SocketTimeoutException) {
+            NetworkResponse.Error(
+                e = ServerNotResponse(),
+                message = null
+            )
+        }
+
+
+    }
 
 
 }

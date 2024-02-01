@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -33,6 +34,7 @@ import com.chunmaru.sushishop.presentation.screens.defaults.DefaultProgressBar
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.presentation.screens.home.elements.SpecialCard
+import com.chunmaru.sushishop.presentation.screens.login.elements.DefaultButton
 import com.chunmaru.sushishop.presentation.screens.management_menu.elements.SpecialAddCard
 import com.chunmaru.sushishop.presentation.screens.management_menu.elements.SpecialManagementCard
 import com.chunmaru.sushishop.ui.theme.Gray30
@@ -57,6 +59,7 @@ fun ManagementMenuScreen(
             ManagementScreenContent(
                 data = currentState.data,
                 onBackClick = onBackClick,
+                onAddDishNavigate = onAddRenderDish
             )
         }
     }
@@ -66,7 +69,8 @@ fun ManagementMenuScreen(
 @Composable
 private fun ManagementScreenContent(
     data: ManagementData,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onAddDishNavigate: () -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -115,6 +119,12 @@ private fun ManagementScreenContent(
         }
         item {
 
+            DefaultButton(modifier = Modifier
+                .height(70.dp)
+                .padding(horizontal = 12.dp)
+                .clip(RoundedCornerShape(20)), title = "Add Dish", onClick = {
+                onAddDishNavigate()
+            })
 
         }
 

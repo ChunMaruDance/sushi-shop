@@ -12,5 +12,6 @@ sealed class NetworkResponse<T> {
         val data: T
     ) : NetworkResponse<T>()
 
-
 }
+
+class ServerNotResponse : Exception()

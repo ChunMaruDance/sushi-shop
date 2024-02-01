@@ -12,8 +12,6 @@ class DishResponse(
     val weight: Float,
     val image: ByteArray,
 ) {
-
-
     fun toDish(): Dish =
         Dish(
             id = id,

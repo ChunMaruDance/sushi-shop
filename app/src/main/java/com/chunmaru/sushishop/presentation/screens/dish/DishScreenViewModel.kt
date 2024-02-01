@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.data.api.ServiceApi
-import com.chunmaru.sushishop.data.models.dishes.DishWIthIngredients
+import com.chunmaru.sushishop.data.models.dishes.DishCounterWithIngredients
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
 import com.chunmaru.sushishop.data.models.dishes.IngredientsData
 import com.chunmaru.sushishop.data.models.dishes.TestDish
@@ -25,7 +25,7 @@ class DishScreenViewModel @Inject constructor(
 
     private lateinit var navController: NavController
 
-    private val _state = MutableStateFlow<ScreenState<DishWIthIngredients>>(ScreenState.Initial())
+    private val _state = MutableStateFlow<ScreenState<DishCounterWithIngredients>>(ScreenState.Initial())
     val state = _state.asStateFlow()
     fun initController(navController: NavController) {
         this.navController = navController
@@ -42,7 +42,7 @@ class DishScreenViewModel @Inject constructor(
             valueKey = NavigationEntryKey.argumentDishKey
         )?.let { dish ->
             _state.value = ScreenState.Success(
-                DishWIthIngredients(
+                DishCounterWithIngredients(
                     dishWithCounter = DishWithCounter(dish, 1),
                     ingredientsData = listOf(
                         IngredientsData(

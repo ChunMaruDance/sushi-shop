@@ -88,7 +88,7 @@ fun ScreenNavigator() {
             CategoryScreen()
         },
         onAddRenderDish = {
-            AddDishScreen()
+            AddDishScreen(navController = navigationState.navHostController)
         }
     )
 

@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.chunmaru.sushishop.data.models.dishes.DishWIthIngredients
+import com.chunmaru.sushishop.data.models.dishes.DishCounterWithIngredients
 import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
@@ -71,7 +71,7 @@ fun DishScreen(
 
 @Composable
 private fun DishScreenSuccess(
-    dishViewState: ScreenState.Success<DishWIthIngredients>,
+    dishViewState: ScreenState.Success<DishCounterWithIngredients>,
     onBuyClick: () -> Unit,
     onBackClick: () -> Unit,
     onMoreClick: () -> Unit,

@@ -4,6 +4,7 @@ package com.chunmaru.sushishop.presentation.screens.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunmaru.sushishop.data.api.NetworkResponse
+import com.chunmaru.sushishop.data.api.ServerNotResponse
 import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.dishes.DishResponse.Companion.toDishList
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,7 +38,12 @@ class SearchScreenViewModel @Inject constructor(
 
             when (val response = serviceController.getRecommendedDishes()) {
                 is NetworkResponse.Error -> {
-                    _state.value = currentState.copy(recommended = RecommendedState.Error)
+                    if (response.e is ServerNotResponse) {
+                        _state.value = SearchScreenState.ServerNotResponse
+                    } else {
+                        _state.value = currentState.copy(recommended = RecommendedState.Error)
+                    }
+
                 }
 
                 is NetworkResponse.Success -> {

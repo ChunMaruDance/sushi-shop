@@ -8,10 +8,13 @@ sealed class SearchScreenState {
 
     object Pending : SearchScreenState()
 
+    object ServerNotResponse : SearchScreenState()
+
     data class ShowData(
         val recommended: RecommendedState,
         val searchDish: List<Dish>
     ) : SearchScreenState()
+
 
 }
 
