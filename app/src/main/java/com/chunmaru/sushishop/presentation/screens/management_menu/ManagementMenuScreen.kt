@@ -105,7 +105,7 @@ private fun ManagementScreenContent(
             if (data.specialDish != null) {
                 SpecialManagementCard(dish = data.specialDish)
             } else {
-                SpecialAddCard(onClick = {})
+                SpecialAddCard(onClick = {}, height = 180.dp)
             }
         }
 

@@ -1,9 +1,11 @@
 package com.chunmaru.sushishop.presentation.screens.add_render_dish
 
+
 import androidx.lifecycle.ViewModel
 import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishWithIngredients
+import com.chunmaru.sushishop.data.models.dishes.DishWithIngredientsCategories
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,9 +17,10 @@ class AddDishScreenViewModel @Inject constructor(
     private val serviceController: ServiceController
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<ScreenState<DishWithIngredients>>(
+
+    private val _state = MutableStateFlow<ScreenState<DishWithIngredientsCategories>>(
         ScreenState.Success(
-            DishWithIngredients(
+            DishWithIngredientsCategories(
                 Dish(
                     id = 0,
                     name = "",
@@ -28,6 +31,7 @@ class AddDishScreenViewModel @Inject constructor(
                     weight = 0f,
                     category = ""
                 ),
+                listOf(),
                 listOf()
             )
 
@@ -35,6 +39,31 @@ class AddDishScreenViewModel @Inject constructor(
         )
     )
     val state = _state.asStateFlow()
+
+    init {
+        init()
+    }
+
+    private fun init() {
+
+    }
+
+    private inline fun updateDish(mutator: Dish.() -> Dish) {
+        val currentState = _state.value as? ScreenState.Success ?: return
+        _state.value = currentState.copy(data = currentState.data.copy(dish = currentState.data.dish.mutator()))
+    }
+
+    fun changeImage(image: ByteArray) {
+        updateDish { copy(image = image) }
+    }
+
+    fun tittleChange(title: String) {
+        updateDish { copy(name = title) }
+    }
+
+    fun categoryChange(category: String) {
+        updateDish { copy(category = category) }
+    }
 
 
 }

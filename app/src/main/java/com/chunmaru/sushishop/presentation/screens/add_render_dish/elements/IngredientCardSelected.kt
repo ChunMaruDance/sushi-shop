@@ -1,17 +1,10 @@
-package com.chunmaru.sushishop.presentation.screens.dish.elements
+package com.chunmaru.sushishop.presentation.screens.add_render_dish.elements
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,58 +19,15 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.chunmaru.sushishop.data.convertImageByteArrayToBitmap
 import com.chunmaru.sushishop.data.models.dishes.Ingredient
-
-import com.chunmaru.sushishop.presentation.screens.dish.DishTextInfo
 import com.chunmaru.sushishop.ui.theme.Gray120
 
 @Composable
-fun DishImageWithIngredients(
-    image: ByteArray,
-    ingredients: List<Ingredient>,
-    dishName: String,
-    dishCategory: String
+
+fun IngredientCardSelected(
+    ingredientData: Ingredient,
+    selected: Boolean,
+    selectChanged: () -> Unit
 ) {
-
-    Column(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-
-        AsyncImage(
-            model = image.convertImageByteArrayToBitmap(),
-            contentDescription = "dish img",
-            Modifier
-                .align(Alignment.CenterHorizontally)
-                .size(220.dp)
-        )
-
-        DishTextInfo(
-            title = dishName,
-            category = dishCategory
-        )
-
-
-        LazyRow(
-            modifier = Modifier
-                .padding(vertical = 12.dp)
-                .fillMaxWidth()
-        ) {
-
-            items(ingredients) { ingredient ->
-                IngredientCard(ingredientData = ingredient)
-            }
-
-        }
-
-    }//
-
-
-}
-
-@Composable
-fun IngredientCard(
-    ingredientData: Ingredient
-) {
-
     Card(
         modifier = Modifier
             .padding(horizontal = 10.dp)
@@ -88,12 +38,12 @@ fun IngredientCard(
                 shape = RoundedCornerShape(15.dp)
             )
             .clickable {
-
-
+                selectChanged()
             },
         shape = RoundedCornerShape(15.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color(247, 247, 247)
+            containerColor = if (selected) Color(247, 247, 247)
+            else Gray120
         )
     ) {
 
@@ -120,4 +70,5 @@ fun IngredientCard(
 
 
     }
+
 }

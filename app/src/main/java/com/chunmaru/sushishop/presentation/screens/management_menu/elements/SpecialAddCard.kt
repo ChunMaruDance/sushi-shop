@@ -17,11 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.chunmaru.sushishop.R
 
 @Composable
 fun SpecialAddCard(
+    height: Dp,
     onClick: () -> Unit
 ) {
 
@@ -29,11 +31,11 @@ fun SpecialAddCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 12.dp, end = 12.dp, top = 12.dp)
-            .height(180.dp)
+            .height(height)
             .shadow(
                 elevation = 3.dp,
-                ambientColor = Color(204, 204, 0),
-                spotColor = Color(204, 204, 0),
+                ambientColor = Color.Gray,
+                spotColor = Color.Gray,
                 shape = RoundedCornerShape(15.dp)
             )
             .clickable { onClick() },
@@ -49,7 +51,7 @@ fun SpecialAddCard(
             Icon(
                 painter = painterResource(id = R.drawable.plus3),
                 contentDescription = "add",
-                tint = Color(214, 214, 0).copy(0.2f),
+                tint = Color.Gray,
                 modifier = Modifier.size(50.dp)
             )
 
