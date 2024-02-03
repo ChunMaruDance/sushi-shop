@@ -3,10 +3,9 @@ package com.chunmaru.sushishop.presentation.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.data.api.ServiceApi
+import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
-import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
 import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
@@ -38,7 +37,7 @@ class HomeScreenViewModel @Inject constructor(
     val ordersCount: StateFlow<Int> = orders.map { list -> list.sumOf { it.counter } }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), 0)
 
-    fun addToOrder(dish: TestDish) {
+    fun addToOrder(dish: Dish) {
         orders.value = (orders.value.toMutableList() + DishWithCounter(dish, 1))
             .groupBy { it.dish.id }
             .map { (_, groupedItems) ->
@@ -76,7 +75,7 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun putDishInCurrentBackStack(
-        dish: TestDish,
+        dish: Dish,
         onSuccess: () -> Unit
     ) {
         navigationStackController.putInCurrentBackStack(
@@ -95,38 +94,7 @@ class HomeScreenViewModel @Inject constructor(
 
             val categoryState = CategoryState.ShowCategory(
                 activeCategory = "All",
-                dishes = listOf(
-                    TestDish(
-                        id = 1,
-                        name = "Kamikaze Salmon",
-                        category = "Sushaaa",
-                        descriptions = "None",
-                        price = 21.30f,
-                        discount = 25.5f,
-                        weight = 200f,
-                        image = R.drawable.test2,
-                    ),
-                    TestDish(
-                        id = 2,
-                        name = "Kamikaze Salmon 2",
-                        category = "Some sushi",
-                        descriptions = "None",
-                        price = 10.30f,
-                        discount = 25.5f,
-                        weight = 200f,
-                        image = R.drawable.test1,
-                    ),
-                    TestDish(
-                        id = 3,
-                        name = "Kamikaze Salmon 3",
-                        category = "Some sushi 3",
-                        descriptions = "None",
-                        price = 10.30f,
-                        discount = 25.5f,
-                        weight = 200f,
-                        image = R.drawable.test2,
-                    )
-                )//list
+                dishes = listOf()//list
             )
             delay(2000)
             _state.value = ScreenState.Success(categoryState)
@@ -138,18 +106,7 @@ class HomeScreenViewModel @Inject constructor(
 
         val categoryState = CategoryState.ShowCategory(
             activeCategory = category,
-            dishes = listOf(
-                TestDish(
-                    id = 1,
-                    name = "Kamikaze Salmon",
-                    category = "Sushaaa",
-                    descriptions = "None",
-                    price = 21.30f,
-                    discount = 25.5f,
-                    weight = 200f,
-                    image = R.drawable.test2,
-                )
-            )
+            dishes = listOf()
         )
 
         _state.value = ScreenState.Success(categoryState)

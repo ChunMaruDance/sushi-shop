@@ -26,7 +26,9 @@ sealed class Screen(val route: String) {
 
     object CategoryScreen : Screen("category")
 
-    object AddRenderDishScreen:Screen("add render dish")
+    object AddRenderDishScreen : Screen("add render dish")
+
+    object AddRenderIngredientScreen : Screen("add render ingredient")
 
 
 }

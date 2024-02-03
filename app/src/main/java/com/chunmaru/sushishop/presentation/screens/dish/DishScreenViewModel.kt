@@ -1,14 +1,11 @@
 package com.chunmaru.sushishop.presentation.screens.dish
 
-
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.data.api.ServiceApi
+import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishCounterWithIngredients
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
-import com.chunmaru.sushishop.data.models.dishes.IngredientsData
-import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
 import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
@@ -36,7 +33,7 @@ class DishScreenViewModel @Inject constructor(
         //todo get ingredients db
 
         _state.value = ScreenState.Pending()
-        navigationStackController.getPreviewBackStackData<TestDish>(
+        navigationStackController.getPreviewBackStackData<Dish>(
             navController = navController,
             bundleKey = NavigationEntryKey.bundleDishKey,
             valueKey = NavigationEntryKey.argumentDishKey
@@ -44,28 +41,7 @@ class DishScreenViewModel @Inject constructor(
             _state.value = ScreenState.Success(
                 DishCounterWithIngredients(
                     dishWithCounter = DishWithCounter(dish, 1),
-                    ingredientsData = listOf(
-                        IngredientsData(
-                            name = "Onigiry",
-                            img = R.drawable.avocado
-                        ),
-                        IngredientsData(
-                            name = "Rays",
-                            img = R.drawable.rice
-                        ),
-                        IngredientsData(
-                            name = "Energy",
-                            img = R.drawable.caviar
-                        ),
-                        IngredientsData(
-                            name = "Nory",
-                            img = R.drawable.nori
-                        ),
-                        IngredientsData(
-                            name = "Nory",
-                            img = R.drawable.nori
-                        )
-                    )
+                    ingredients = listOf()
                 )
             )
         }

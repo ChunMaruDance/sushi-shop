@@ -42,7 +42,8 @@ import com.chunmaru.sushishop.ui.theme.Gray30
 @Composable
 fun ManagementMenuScreen(
     onBackClick: () -> Unit,
-    onAddRenderDish: () -> Unit
+    onAddRenderDish: () -> Unit,
+    onAddIngredientNavigate: () -> Unit
 ) {
 
     val viewModel: ManagementScreenViewModel = hiltViewModel()
@@ -59,7 +60,8 @@ fun ManagementMenuScreen(
             ManagementScreenContent(
                 data = currentState.data,
                 onBackClick = onBackClick,
-                onAddDishNavigate = onAddRenderDish
+                onAddDishNavigate = onAddRenderDish,
+                onAddIngredientNavigate = onAddIngredientNavigate
             )
         }
     }
@@ -70,7 +72,8 @@ fun ManagementMenuScreen(
 private fun ManagementScreenContent(
     data: ManagementData,
     onBackClick: () -> Unit,
-    onAddDishNavigate: () -> Unit
+    onAddDishNavigate: () -> Unit,
+    onAddIngredientNavigate: () -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -121,10 +124,18 @@ private fun ManagementScreenContent(
 
             DefaultButton(modifier = Modifier
                 .height(70.dp)
-                .padding(horizontal = 12.dp)
+                .padding(horizontal = 12.dp, vertical = 3.dp)
                 .clip(RoundedCornerShape(20)), title = "Add Dish", onClick = {
                 onAddDishNavigate()
             })
+
+            DefaultButton(modifier = Modifier
+                .height(70.dp)
+                .padding(horizontal = 12.dp, vertical = 3.dp)
+                .clip(RoundedCornerShape(20)), title = "Add Ingredient", onClick = {
+                onAddIngredientNavigate()
+            })
+
 
         }
 

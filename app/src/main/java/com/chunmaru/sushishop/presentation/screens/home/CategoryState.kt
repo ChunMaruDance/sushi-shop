@@ -1,7 +1,7 @@
 package com.chunmaru.sushishop.presentation.screens.home
 
 
-import com.chunmaru.sushishop.data.models.dishes.TestDish
+import com.chunmaru.sushishop.data.models.dishes.Dish
 
 
 sealed class CategoryState {
@@ -14,7 +14,7 @@ sealed class CategoryState {
 
     data class ShowCategory(
         val activeCategory: String,
-        val dishes: List<TestDish>
+        val dishes: List<Dish>
     ) : CategoryState()
 
 

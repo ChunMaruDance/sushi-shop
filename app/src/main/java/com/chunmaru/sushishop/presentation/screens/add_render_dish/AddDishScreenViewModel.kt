@@ -25,7 +25,8 @@ class AddDishScreenViewModel @Inject constructor(
                     price = 0f,
                     discount = 0f,
                     image = byteArrayOf(),
-                    weight = 0f
+                    weight = 0f,
+                    category = ""
                 ),
                 listOf()
             )

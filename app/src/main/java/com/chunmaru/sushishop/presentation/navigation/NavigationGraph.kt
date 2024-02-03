@@ -23,7 +23,8 @@ fun NavigationGraph(
     onManagementMenu: @Composable () -> Unit,
     onSearch: @Composable () -> Unit,
     onCategory: @Composable () -> Unit,
-    onAddRenderDish: @Composable () -> Unit
+    onAddRenderDish: @Composable () -> Unit,
+    onAddRenderIngredient: @Composable () -> Unit
 ) {
 
     NavHost(
@@ -44,6 +45,7 @@ fun NavigationGraph(
         composable(route = Screen.SearchScreen.route) { onSearch() }
         composable(route = Screen.CategoryScreen.route) { onCategory() }
         composable(route = Screen.AddRenderDishScreen.route) { onAddRenderDish() }
+        composable(route = Screen.AddRenderIngredientScreen.route) { onAddRenderIngredient() }
     }
 
 }

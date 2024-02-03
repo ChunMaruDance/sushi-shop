@@ -40,8 +40,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
+import coil.compose.AsyncImage
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.data.models.dishes.TestDish
+import com.chunmaru.sushishop.data.convertImageByteArrayToBitmap
+import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.ui.theme.Gray30
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -52,9 +54,9 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun HomeScreenCarousel(
-    dishes: List<TestDish>,
-    addToBasket: (TestDish) -> Unit,
-    onItemClick: (TestDish) -> Unit
+    dishes: List<Dish>,
+    addToBasket: (Dish) -> Unit,
+    onItemClick: (Dish) -> Unit
 ) {
 
 
@@ -130,12 +132,12 @@ fun HomeScreenCarousel(
 
 @Composable
 fun ColumnScope.HomeCarouselCard(
-    dish: TestDish,
-    addToBasket: (TestDish) -> Unit
+    dish: Dish,
+    addToBasket: (Dish) -> Unit
 ) {
 
-    Image(
-        painter = painterResource(id = dish.image),
+    AsyncImage(
+        model = dish.image.convertImageByteArrayToBitmap(),
         contentDescription = "banner image",
         modifier = Modifier
             .padding(vertical = 20.dp)

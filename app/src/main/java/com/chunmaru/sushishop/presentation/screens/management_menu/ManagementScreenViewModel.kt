@@ -6,17 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.chunmaru.sushishop.data.api.NetworkResponse
 import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.Category
-import com.chunmaru.sushishop.data.models.CategoryResponse
 import com.chunmaru.sushishop.data.models.CategoryResponse.CREATOR.toCategoriesList
 import com.chunmaru.sushishop.data.models.dishes.Dish
-import com.chunmaru.sushishop.data.models.dishes.DishResponse
-import com.chunmaru.sushishop.data.models.dishes.Ingredients
-import com.chunmaru.sushishop.data.models.dishes.TestDish
+import com.chunmaru.sushishop.data.models.dishes.Ingredient
 import com.chunmaru.sushishop.data.models.toIngredients
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -45,7 +41,7 @@ class ManagementScreenViewModel @Inject constructor(
 
             var categories = listOf<Category>()
             var specialDish: Dish? = null
-            var ingredients = listOf<Ingredients>()
+            var ingredients = listOf<Ingredient>()
             when (responseCategories) {
                 is NetworkResponse.Error -> {
                     Log.d("MyTag", "initCategories: error ")
@@ -99,5 +95,5 @@ class ManagementScreenViewModel @Inject constructor(
 data class ManagementData(
     val specialDish: Dish?,
     val allCategory: List<Category>,
-    val ingredient: List<Ingredients>
+    val ingredient: List<Ingredient>
 )

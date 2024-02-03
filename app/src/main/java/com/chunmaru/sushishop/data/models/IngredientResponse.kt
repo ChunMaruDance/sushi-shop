@@ -2,7 +2,7 @@ package com.chunmaru.sushishop.data.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.chunmaru.sushishop.data.models.dishes.Ingredients
+import com.chunmaru.sushishop.data.models.dishes.Ingredient
 
 data class IngredientResponse(
     val id: Int,
@@ -60,9 +60,9 @@ data class IngredientResponse(
     }
 }
 
-fun List<IngredientResponse>.toIngredients(): List<Ingredients> {
+fun List<IngredientResponse>.toIngredients(): List<Ingredient> {
     return map {
-        Ingredients(
+        Ingredient(
             name = it.name,
             descriptions = it.description,
             img = it.image,

@@ -5,11 +5,11 @@ import android.os.Parcelable
 
 
 data class DishWithCounter(
-    val dish: TestDish,
+    val dish: Dish,
     val counter: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readParcelable(TestDish::class.java.classLoader)!!,
+        parcel.readParcelable(Dish::class.java.classLoader)!!,
         parcel.readInt()
     ) {
     }

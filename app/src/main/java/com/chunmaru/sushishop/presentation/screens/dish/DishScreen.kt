@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishCounterWithIngredients
-import com.chunmaru.sushishop.data.models.dishes.TestDish
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.dish.elements.DishImageWithIngredients
@@ -79,7 +79,7 @@ private fun DishScreenSuccess(
     onRemoveCounter: () -> Unit
 ) {
     val dish = dishViewState.data.dishWithCounter.dish
-    val ingredients = dishViewState.data.ingredientsData
+    val ingredients = dishViewState.data.ingredients
     val counter = dishViewState.data.dishWithCounter.counter
 
     Scaffold(
@@ -157,7 +157,7 @@ private fun RenderBuyNowButton(onBuyClick: () -> Unit) {
 }
 
 @Composable
-private fun DescriptionSection(dish: TestDish) {
+private fun DescriptionSection(dish: Dish) {
     Text(
         text = "Description",
         color = Gray30,

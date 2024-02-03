@@ -29,7 +29,9 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.chunmaru.sushishop.R
+import com.chunmaru.sushishop.data.convertImageByteArrayToBitmap
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
 import com.chunmaru.sushishop.ui.theme.Gray120
 import com.chunmaru.sushishop.ui.theme.Gray30
@@ -66,8 +68,8 @@ fun OrderCard(
                     containerColor = Color(230, 230, 230)
                 )
             ) {
-                Image(
-                    painter = painterResource(id = dishWithCounter.dish.image),
+                AsyncImage(
+                    model = dishWithCounter.dish.image.convertImageByteArrayToBitmap(),
                     contentDescription = "dish image",
                     modifier = Modifier
                         .size(90.dp)

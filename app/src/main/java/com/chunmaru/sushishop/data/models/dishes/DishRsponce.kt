@@ -11,6 +11,7 @@ class DishResponse(
     val discount: Float,
     val weight: Float,
     val image: ByteArray,
+    val category: String
 ) {
     fun toDish(): Dish =
         Dish(
@@ -21,6 +22,7 @@ class DishResponse(
             discount = discount,
             weight = weight,
             image = image,
+            category = category
         )
 
     companion object {
@@ -32,55 +34,7 @@ class DishResponse(
 }
 
 
-data class TestDish(
-    val id: Int,
-    val name: String,
-    val descriptions: String,
-    val category: String,
-    val price: Float,
-    val discount: Float,
-    val weight: Float,
-    val image: Int,
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readFloat(),
-        parcel.readFloat(),
-        parcel.readFloat(),
-        parcel.readInt()
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(name)
-        parcel.writeString(descriptions)
-        parcel.writeString(category)
-        parcel.writeFloat(price)
-        parcel.writeFloat(discount)
-        parcel.writeFloat(weight)
-        parcel.writeInt(image)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<TestDish> {
-        override fun createFromParcel(parcel: Parcel): TestDish {
-            return TestDish(parcel)
-        }
-
-        override fun newArray(size: Int): Array<TestDish?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
-data class Ingredients(
+data class Ingredient(
     val name: String,
     val descriptions: String,
     val id: Int,
@@ -90,7 +44,7 @@ data class Ingredients(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Ingredients
+        other as Ingredient
 
         if (name != other.name) return false
         return img.contentEquals(other.img)
@@ -104,38 +58,6 @@ data class Ingredients(
 }
 
 
-data class IngredientsData(
-    val name: String,
-    val img: Int
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString()!!,
-        parcel.readInt()
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeInt(img)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<IngredientsData> {
-        override fun createFromParcel(parcel: Parcel): IngredientsData {
-            return IngredientsData(parcel)
-        }
-
-        override fun newArray(size: Int): Array<IngredientsData?> {
-            return arrayOfNulls(size)
-        }
-    }
-
-}
-
-
 data class Dish(
     val id: Int,
     val name: String,
@@ -144,7 +66,19 @@ data class Dish(
     val discount: Float,
     val weight: Float,
     val image: ByteArray,
-) {
+    val category: String
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readFloat(),
+        parcel.readFloat(),
+        parcel.readFloat(),
+        parcel.createByteArray()!!,
+        parcel.readString()!!
+    )
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -157,7 +91,8 @@ data class Dish(
         if (price != other.price) return false
         if (discount != other.discount) return false
         if (weight != other.weight) return false
-        return image.contentEquals(other.image)
+        if (!image.contentEquals(other.image)) return false
+        return category == other.category
     }
 
     override fun hashCode(): Int {
@@ -168,7 +103,33 @@ data class Dish(
         result = 31 * result + discount.hashCode()
         result = 31 * result + weight.hashCode()
         result = 31 * result + image.contentHashCode()
+        result = 31 * result + category.hashCode()
         return result
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(name)
+        parcel.writeString(descriptions)
+        parcel.writeFloat(price)
+        parcel.writeFloat(discount)
+        parcel.writeFloat(weight)
+        parcel.writeByteArray(image)
+        parcel.writeString(category)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Dish> {
+        override fun createFromParcel(parcel: Parcel): Dish {
+            return Dish(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Dish?> {
+            return arrayOfNulls(size)
+        }
     }
 
 }

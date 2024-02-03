@@ -9,9 +9,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishWithIngredients
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultProgressBar
+import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 
 @Composable
@@ -30,8 +30,8 @@ fun AddDishScreen(
 
         is ScreenState.Success -> {
             AddDishScreenContent(
-                dish = currentState.data,
-                onBackClick = {}
+                dishWithIngredients = currentState.data,
+                onBackClick = { navController.popBackStack() }
             )
         }
     }
@@ -40,8 +40,8 @@ fun AddDishScreen(
 
 @Composable
 private fun AddDishScreenContent(
-    dish: DishWithIngredients,
-    onBackClick: () -> Unit,
+    dishWithIngredients: DishWithIngredients,
+    onBackClick: () -> Unit
 ) {
 
     Column(
@@ -49,7 +49,13 @@ private fun AddDishScreenContent(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.onBackground)
     ) {
-        //todo screen
+        DefaultTopBar(
+            title = "Dish",
+            onBackClick = { onBackClick() },
+            onMoreClick = { },
+        )
+
+
     }
 
 
