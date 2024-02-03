@@ -1,6 +1,7 @@
 package com.chunmaru.sushishop.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import com.chunmaru.sushishop.presentation.screens.add_delete_category.AddDeleteCategoryScreen
 import com.chunmaru.sushishop.presentation.screens.add_render_dish.AddDishScreen
 import com.chunmaru.sushishop.presentation.screens.add_render_ingredient.AddRenderIngredientScreen
 import com.chunmaru.sushishop.presentation.screens.admin.AdminScreen
@@ -80,7 +81,8 @@ fun ScreenNavigator() {
             ManagementMenuScreen(
                 onBackClick = { navigationState.navHostController.popBackStack() },
                 onAddRenderDish = { navigationState.navigate(Screen.AddRenderDishScreen.route) },
-                onAddIngredientNavigate = { navigationState.navigate(Screen.AddRenderIngredientScreen.route) }
+                onAddIngredientNavigate = { navigationState.navigate(Screen.AddRenderIngredientScreen.route) },
+                onAddDeleteCategoryNavigate = { navigationState.navigate(Screen.AddDeleteCategoryScreen.route) }
             )
         },
         onSearch = {
@@ -93,7 +95,12 @@ fun ScreenNavigator() {
             AddDishScreen(navController = navigationState.navHostController)
         },
         onAddRenderIngredient = {
-            AddRenderIngredientScreen()
+            AddRenderIngredientScreen(
+                onBackClick = { navigationState.navHostController.popBackStack() }
+            )
+        },
+        onAddDeleteCategoryScreen = {
+            AddDeleteCategoryScreen()
         }
     )
 

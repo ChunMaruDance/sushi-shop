@@ -43,7 +43,8 @@ import com.chunmaru.sushishop.ui.theme.Gray30
 fun ManagementMenuScreen(
     onBackClick: () -> Unit,
     onAddRenderDish: () -> Unit,
-    onAddIngredientNavigate: () -> Unit
+    onAddIngredientNavigate: () -> Unit,
+    onAddDeleteCategoryNavigate: () -> Unit
 ) {
 
     val viewModel: ManagementScreenViewModel = hiltViewModel()
@@ -61,7 +62,8 @@ fun ManagementMenuScreen(
                 data = currentState.data,
                 onBackClick = onBackClick,
                 onAddDishNavigate = onAddRenderDish,
-                onAddIngredientNavigate = onAddIngredientNavigate
+                onAddIngredientNavigate = onAddIngredientNavigate,
+                onAddDeleteCategoryNavigate = onAddDeleteCategoryNavigate
             )
         }
     }
@@ -73,7 +75,8 @@ private fun ManagementScreenContent(
     data: ManagementData,
     onBackClick: () -> Unit,
     onAddDishNavigate: () -> Unit,
-    onAddIngredientNavigate: () -> Unit
+    onAddIngredientNavigate: () -> Unit,
+    onAddDeleteCategoryNavigate: () -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -102,16 +105,26 @@ private fun ManagementScreenContent(
         }
 
         item {
+            val modifier = Modifier
+                .padding(horizontal = 12.dp)
+                .fillMaxWidth()
+                .height(180.dp)
+                .shadow(
+                    elevation = 3.dp,
+                    ambientColor = Color(204, 204, 0),
+                    spotColor = Color(204, 204, 0),
+                    shape = RoundedCornerShape(15.dp)
+                )
             if (data.specialDish != null) {
-                SpecialManagementCard(dish = data.specialDish)
+                SpecialManagementCard(dish = data.specialDish, modifier = modifier)
             } else {
-                SpecialAddCard(onClick = {}, height = 180.dp)
+                SpecialAddCard(onClick = {}, modifier = modifier)
             }
         }
 
         item {
             Text(
-                text = "Ingredients",
+                text = "",
                 modifier = Modifier.padding(top = 21.dp, bottom = 12.dp),
                 style = TextStyle(
                     fontFamily = FontFamily.Serif,
@@ -125,15 +138,22 @@ private fun ManagementScreenContent(
             DefaultButton(modifier = Modifier
                 .height(70.dp)
                 .padding(horizontal = 12.dp, vertical = 3.dp)
-                .clip(RoundedCornerShape(20)), title = "Add Dish", onClick = {
+                .clip(RoundedCornerShape(20)), title = "Dishes", onClick = {
                 onAddDishNavigate()
             })
 
             DefaultButton(modifier = Modifier
                 .height(70.dp)
                 .padding(horizontal = 12.dp, vertical = 3.dp)
-                .clip(RoundedCornerShape(20)), title = "Add Ingredient", onClick = {
+                .clip(RoundedCornerShape(20)), title = "Ingredientes", onClick = {
                 onAddIngredientNavigate()
+            })
+
+            DefaultButton(modifier = Modifier
+                .height(70.dp)
+                .padding(horizontal = 12.dp, vertical = 3.dp)
+                .clip(RoundedCornerShape(20)), title = "Categories", onClick = {
+                onAddDeleteCategoryNavigate()
             })
 
 

@@ -3,19 +3,18 @@ package com.chunmaru.sushishop.presentation.screens.defaults
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -28,6 +27,7 @@ import com.chunmaru.sushishop.ui.theme.Gray30
 @Composable
 fun DefaultTopBar(
     title: String,
+    background: Color = Color.Transparent,
     onMoreClick: () -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -35,7 +35,8 @@ fun DefaultTopBar(
     Row(
         modifier = Modifier
             .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 10.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(background),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -56,11 +57,13 @@ fun DefaultTopBar(
 @Composable
 fun DefaultTopBarItem(
     image: Int,
+    paddingValues: PaddingValues = PaddingValues(),
     onClick: () -> Unit
 ) {
 
     Box(
         modifier = Modifier
+            .padding(paddingValues)
             .size(42.dp)
             .shadow(
                 elevation = 3.dp,

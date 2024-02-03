@@ -27,18 +27,13 @@ import com.chunmaru.sushishop.data.convertImageByteArrayToBitmap
 import com.chunmaru.sushishop.data.models.dishes.Dish
 
 @Composable
-fun SpecialManagementCard(dish: Dish) {
+fun SpecialManagementCard(
+    dish: Dish,
+    modifier: Modifier
+) {
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp)
-            .shadow(
-                elevation = 3.dp,
-                ambientColor = Color(204, 204, 0),
-                spotColor = Color(204, 204, 0),
-                shape = RoundedCornerShape(15.dp)
-            ),
+        modifier = Modifier,
         shape = RoundedCornerShape(15.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color(247, 247, 247)

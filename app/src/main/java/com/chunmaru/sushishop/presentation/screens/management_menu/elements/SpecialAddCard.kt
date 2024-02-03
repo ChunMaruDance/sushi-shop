@@ -23,21 +23,11 @@ import com.chunmaru.sushishop.R
 
 @Composable
 fun SpecialAddCard(
-    height: Dp,
+    modifier: Modifier,
     onClick: () -> Unit
 ) {
-
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 12.dp, end = 12.dp, top = 12.dp)
-            .height(height)
-            .shadow(
-                elevation = 3.dp,
-                ambientColor = Color.Gray,
-                spotColor = Color.Gray,
-                shape = RoundedCornerShape(15.dp)
-            )
+        modifier = modifier
             .clickable { onClick() },
         shape = RoundedCornerShape(15.dp),
         colors = CardDefaults.cardColors(

@@ -91,6 +91,7 @@ private fun DishScreenSuccess(
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
+                .padding()
                 .fillMaxSize()
         ) {
             item {
