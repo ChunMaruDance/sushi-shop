@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.chunmaru.sushishop.data.models.dishes.DishWithIngredientsCategories
 import com.chunmaru.sushishop.data.models.dishes.Ingredient
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultImageCard
+import com.chunmaru.sushishop.presentation.screens.defaults.ImageCardWithLauncher
 
 
 @Composable
@@ -30,21 +31,11 @@ fun DishImageWithIngredientsRender(
     onTittleChange: (String) -> Unit
 ) {
 
-    val launcher =
-        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri ->
-            if (uri != null) onImageSelected(uri)
-        }
-
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-
-
-        DefaultImageCard(
+        ImageCardWithLauncher(
             img = dishWithIngredients.dish.image,
-            onClick = {
-                launcher.launch("image/*")
-            },
             modifier = Modifier
                 .size(250.dp)
                 .shadow(
@@ -52,7 +43,7 @@ fun DishImageWithIngredientsRender(
                     ambientColor = Color.Gray,
                     spotColor = Color.Gray,
                     shape = RoundedCornerShape(15.dp)
-                ),
+                ), onImageSelected = onImageSelected
         )
 
         DishTextInfoChange(

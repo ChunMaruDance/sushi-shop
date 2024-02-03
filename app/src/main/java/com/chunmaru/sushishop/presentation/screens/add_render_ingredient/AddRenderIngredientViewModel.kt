@@ -2,7 +2,6 @@ package com.chunmaru.sushishop.presentation.screens.add_render_ingredient
 
 import androidx.lifecycle.ViewModel
 import com.chunmaru.sushishop.data.api.ServiceController
-import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.Ingredient
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,7 +32,6 @@ class AddRenderIngredientViewModel @Inject constructor(
         )
     }
 
-
     private inline fun updateDish(mutator: Ingredient.() -> Ingredient) {
         val currentState = _state.value as? ScreenState.Success ?: return
         _state.value =
@@ -43,7 +41,6 @@ class AddRenderIngredientViewModel @Inject constructor(
     fun changeImage(image: ByteArray) {
         updateDish { copy(img = image) }
     }
-
 
 }
 
