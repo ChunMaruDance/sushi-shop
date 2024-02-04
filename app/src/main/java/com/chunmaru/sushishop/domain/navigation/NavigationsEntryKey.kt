@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.navigation
+package com.chunmaru.sushishop.domain.navigation
 
 object NavigationEntryKey {
 

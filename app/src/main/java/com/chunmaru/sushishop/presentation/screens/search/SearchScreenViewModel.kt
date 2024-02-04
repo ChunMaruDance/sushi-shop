@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunmaru.sushishop.data.api.NetworkResponse
 import com.chunmaru.sushishop.data.api.ServerNotResponse
-import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.dishes.DishResponse.Companion.toDishList
+import com.chunmaru.sushishop.domain.repositories.api_controller.ServiceControllerDish
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    private val serviceController: ServiceController
+    private val serviceController: ServiceControllerDish
 ) : ViewModel() {
 
     private val _state =

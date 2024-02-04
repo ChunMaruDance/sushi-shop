@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.screens.defaults
+package com.chunmaru.sushishop.presentation.screens.defaults.ui_elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.navigation
+package com.chunmaru.sushishop.domain.navigation
 
 sealed class Screen(val route: String) {
 
@@ -30,6 +30,6 @@ sealed class Screen(val route: String) {
 
     object AddRenderIngredientScreen : Screen("add render ingredient")
 
-    object AddDeleteCategoryScreen:Screen("add delete category")
+    object AddDeleteCategoryScreen: Screen("add delete category")
 
 }

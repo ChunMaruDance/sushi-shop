@@ -35,7 +35,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -45,7 +44,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.presentation.screens.order.elements.OrderCard
 

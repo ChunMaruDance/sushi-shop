@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chunmaru.sushishop.data.models.dishes.Ingredient
 import com.chunmaru.sushishop.data.readBytesFromUri
-import com.chunmaru.sushishop.presentation.screens.defaults.CustomMultilineHintTextField
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.CustomMultilineHintTextField
 import com.chunmaru.sushishop.presentation.screens.defaults.ImageCardWithLauncher
 import com.chunmaru.sushishop.presentation.screens.login.elements.DefaultButton
 import com.chunmaru.sushishop.ui.theme.Gray30

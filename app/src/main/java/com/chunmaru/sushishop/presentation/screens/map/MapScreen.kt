@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultTopBar
 import com.chunmaru.sushishop.ui.theme.Gray30
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition

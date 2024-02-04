@@ -2,10 +2,9 @@ package com.chunmaru.sushishop.presentation.screens.add_render_dish
 
 
 import androidx.lifecycle.ViewModel
-import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.dishes.Dish
-import com.chunmaru.sushishop.data.models.dishes.DishWithIngredients
 import com.chunmaru.sushishop.data.models.dishes.DishWithIngredientsCategories
+import com.chunmaru.sushishop.domain.repositories.api_controller.ServiceControllerDish
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddDishScreenViewModel @Inject constructor(
-    private val serviceController: ServiceController
+    private val serviceController: ServiceControllerDish
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<ScreenState<DishWithIngredientsCategories>>(
@@ -49,7 +48,8 @@ class AddDishScreenViewModel @Inject constructor(
 
     private inline fun updateDish(mutator: Dish.() -> Dish) {
         val currentState = _state.value as? ScreenState.Success ?: return
-        _state.value = currentState.copy(data = currentState.data.copy(dish = currentState.data.dish.mutator()))
+        _state.value =
+            currentState.copy(data = currentState.data.copy(dish = currentState.data.dish.mutator()))
     }
 
     fun changeImage(image: ByteArray) {

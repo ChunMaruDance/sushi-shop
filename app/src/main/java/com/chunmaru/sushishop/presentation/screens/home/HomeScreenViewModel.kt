@@ -6,8 +6,8 @@ import androidx.navigation.NavController
 import com.chunmaru.sushishop.data.api.ServiceApi
 import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishWithCounter
-import com.chunmaru.sushishop.presentation.navigation.NavigationEntryKey
-import com.chunmaru.sushishop.presentation.navigation.NavigationStackController
+import com.chunmaru.sushishop.domain.navigation.NavigationEntryKey
+import com.chunmaru.sushishop.domain.navigation.NavigationStackController
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

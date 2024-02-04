@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chunmaru.sushishop.data.api.NetworkResponse
-import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.admin.Admin
 import com.chunmaru.sushishop.data.models.admin.toAdmin
 import com.chunmaru.sushishop.data.storage.DataStoreManager
+import com.chunmaru.sushishop.domain.repositories.api_controller.ServiceControllerLoginData
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AdminViewModel @Inject constructor(
-    private val serviceApi: ServiceController,
+    private val serviceApi: ServiceControllerLoginData,
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 

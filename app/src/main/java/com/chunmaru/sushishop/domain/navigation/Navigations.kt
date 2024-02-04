@@ -1,4 +1,4 @@
-package com.chunmaru.sushishop.presentation.navigation
+package com.chunmaru.sushishop.domain.navigation
 
 import androidx.compose.runtime.Composable
 import com.chunmaru.sushishop.presentation.screens.add_delete_category.AddDeleteCategoryScreen

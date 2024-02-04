@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import com.chunmaru.sushishop.data.storage.DataStoreManager
-import com.chunmaru.sushishop.presentation.navigation.ScreenNavigator
+import com.chunmaru.sushishop.domain.navigation.ScreenNavigator
 import com.chunmaru.sushishop.ui.theme.SushiShopTheme
 import dagger.hilt.android.AndroidEntryPoint
 

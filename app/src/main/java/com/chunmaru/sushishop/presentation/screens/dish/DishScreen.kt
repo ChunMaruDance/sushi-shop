@@ -31,7 +31,7 @@ import androidx.navigation.NavController
 import com.chunmaru.sushishop.data.models.dishes.Dish
 import com.chunmaru.sushishop.data.models.dishes.DishCounterWithIngredients
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.dish.elements.DishImageWithIngredients
 import com.chunmaru.sushishop.presentation.screens.dish.elements.DishesPriceCountElement
 import com.chunmaru.sushishop.ui.theme.Gray120

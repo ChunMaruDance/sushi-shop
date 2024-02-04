@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBarItem
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultTopBarItem
 import com.chunmaru.sushishop.ui.theme.Gray30
 
 @OptIn(ExperimentalMaterial3Api::class)

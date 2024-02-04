@@ -50,12 +50,13 @@ interface ServiceApi {
     @GET("/dishes/categories/get")
     suspend fun getCategories(): Response<List<CategoryResponse>>
 
-    //todo
     @GET("/dishes/recommended")
     suspend fun getRecommended(): Response<List<DishResponse>>
 
     @GET("/dishes/ingredients")
     suspend fun getAllIngredients(): Response<List<IngredientResponse>>
+
+
 
 }
 

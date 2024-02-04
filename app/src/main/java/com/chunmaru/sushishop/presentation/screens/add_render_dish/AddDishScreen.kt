@@ -11,14 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.chunmaru.sushishop.data.models.dishes.DishWithIngredients
 import com.chunmaru.sushishop.data.models.dishes.DishWithIngredientsCategories
 import com.chunmaru.sushishop.data.readBytesFromUri
 import com.chunmaru.sushishop.presentation.screens.add_render_dish.elements.DishImageWithIngredientsRender
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultProgressBar
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultProgressBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
-import com.chunmaru.sushishop.presentation.screens.dish.elements.DishImageWithIngredients
 
 @Composable
 fun AddDishScreen(

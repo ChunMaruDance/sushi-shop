@@ -1,19 +1,18 @@
 package com.chunmaru.sushishop.presentation.screens.login
 
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import com.airbnb.lottie.compose.LottieConstants
 import com.chunmaru.sushishop.data.api.ApiClient
 import com.chunmaru.sushishop.data.api.NetworkResponse
-import com.chunmaru.sushishop.data.api.ServiceController
+import com.chunmaru.sushishop.data.api.controllers.ServiceControllerLoginDataImpl
 import com.chunmaru.sushishop.data.models.login.LoginResponse
 import com.chunmaru.sushishop.data.storage.DataStoreManager
+import com.chunmaru.sushishop.domain.repositories.api_controller.ServiceControllerLoginData
 import com.chunmaru.sushishop.presentation.screens.defaults.alerts.DefaultAlertDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -26,7 +25,6 @@ fun checkToken(
 ) {
     coroutineScope.launch(Dispatchers.IO) {
         val token = dataStoreManager.getAdminToken()
-        Log.d("MyTag", "checkToken: $token ")
         withContext(Dispatchers.Main) {
             if (token.isNotEmpty()) onSuccess()
             else onError()
@@ -36,7 +34,7 @@ fun checkToken(
 }
 
 fun checkLogin(
-    serviceController: ServiceController = ServiceController(ApiClient.serviceApi),
+    serviceController: ServiceControllerLoginData = ServiceControllerLoginDataImpl(ApiClient.serviceApi),
     dataStoreManager: DataStoreManager,
     login: String,
     password: String,
@@ -49,20 +47,15 @@ fun checkLogin(
     }
     coroutinesScope.launch {
         onState(LoginState.Loading)
-        delay(2000)
-        Log.d("MyTag", "checkLogin: pass : $password login : $login ")
         when (val response = serviceController.login(login = login, password = password)) {
 
             is NetworkResponse.Error -> {
-                Log.d("MyTag", "checkLogin: ${response.message} ")
                 pushWithMainContext { onState(LoginState.NoValidData) }
             }
 
             is NetworkResponse.Success<*> -> {
                 val token = response.data as LoginResponse
-                Log.d("MyTag", "checkLogin: ${token.token} ")
                 dataStoreManager.setAdminToken(token.token)
-                Log.d("MyTag", "checkLogin 2 ")
                 pushWithMainContext { onState(LoginState.SuccessLogIn) }
             }
 
@@ -86,7 +79,6 @@ fun HandleLoginState(
     navigateOnAdmin: () -> Unit
 ) {
 
-    Log.d("MyTag", "HandleLoginState: ${loginState.value is LoginState.SuccessLogIn} ")
 
     when (loginState.value) {
         LoginState.Loading -> {

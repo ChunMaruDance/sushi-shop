@@ -2,8 +2,9 @@ package com.chunmaru.sushishop.presentation.screens.category
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.dishes.Dish
+import com.chunmaru.sushishop.domain.repositories.api_controller.ServiceControllerCategories
+import com.chunmaru.sushishop.domain.repositories.api_controller.ServiceControllerDish
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CategoryScreenViewModel @Inject constructor(
-    private val serviceController: ServiceController
+    private val serviceControllerCategories: ServiceControllerCategories,
+    private val serviceControllerDish:ServiceControllerDish
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<ScreenState<List<Dish>>>(ScreenState.Initial())
@@ -28,7 +30,7 @@ class CategoryScreenViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _state.value = ScreenState.Pending()
             //todo
-            serviceController.getDishesByCategory("category")
+            serviceControllerDish.getDishesByCategory("category")
 
         }
     }

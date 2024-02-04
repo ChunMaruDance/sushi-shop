@@ -1,8 +1,6 @@
 package com.chunmaru.sushishop.presentation.screens.add_render_dish.elements
 
 import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,13 +9,11 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.chunmaru.sushishop.data.models.dishes.DishWithIngredientsCategories
 import com.chunmaru.sushishop.data.models.dishes.Ingredient
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultImageCard
 import com.chunmaru.sushishop.presentation.screens.defaults.ImageCardWithLauncher
 
 

@@ -12,14 +12,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.chunmaru.sushishop.data.models.dishes.Ingredient
 import com.chunmaru.sushishop.presentation.screens.add_render_ingredient.elements.AddRenderIngredientsScaffoldContent
 import com.chunmaru.sushishop.presentation.screens.add_render_ingredient.elements.AddRenderIngredientsTopBar
 import com.chunmaru.sushishop.presentation.screens.defaults.alerts.AlertSaveHandler
 import com.chunmaru.sushishop.presentation.screens.add_render_ingredient.elements.IngredientsAlertHandler
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultProgressBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultProgressBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.presentation.screens.defaults.alerts.DefaultAlertsState
 

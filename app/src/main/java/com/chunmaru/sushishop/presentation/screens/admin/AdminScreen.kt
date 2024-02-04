@@ -37,7 +37,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.data.models.admin.Admin
 import com.chunmaru.sushishop.presentation.screens.admin.elements.AdminCard
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultProgressBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultProgressBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
 import com.chunmaru.sushishop.ui.theme.Gray120
 import com.chunmaru.sushishop.ui.theme.Gray30

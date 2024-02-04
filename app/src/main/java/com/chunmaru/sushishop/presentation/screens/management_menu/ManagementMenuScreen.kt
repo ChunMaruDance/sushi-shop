@@ -1,19 +1,12 @@
 package com.chunmaru.sushishop.presentation.screens.management_menu
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,17 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.chunmaru.sushishop.R
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultProgressBar
-import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
+import com.chunmaru.sushishop.data.models.dishes.Dish
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultProgressBar
+import com.chunmaru.sushishop.presentation.screens.defaults.ui_elements.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.defaults.ScreenState
-import com.chunmaru.sushishop.presentation.screens.home.elements.SpecialCard
 import com.chunmaru.sushishop.presentation.screens.login.elements.DefaultButton
 import com.chunmaru.sushishop.presentation.screens.management_menu.elements.SpecialAddCard
 import com.chunmaru.sushishop.presentation.screens.management_menu.elements.SpecialManagementCard
@@ -72,7 +63,7 @@ fun ManagementMenuScreen(
 
 @Composable
 private fun ManagementScreenContent(
-    data: ManagementData,
+    data: Dish?,
     onBackClick: () -> Unit,
     onAddDishNavigate: () -> Unit,
     onAddIngredientNavigate: () -> Unit,
@@ -115,8 +106,8 @@ private fun ManagementScreenContent(
                     spotColor = Color(204, 204, 0),
                     shape = RoundedCornerShape(15.dp)
                 )
-            if (data.specialDish != null) {
-                SpecialManagementCard(dish = data.specialDish, modifier = modifier)
+            if (data != null) {
+                SpecialManagementCard(dish = data, modifier = modifier)
             } else {
                 SpecialAddCard(onClick = {}, modifier = modifier)
             }
