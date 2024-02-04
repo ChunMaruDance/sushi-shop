@@ -10,15 +10,12 @@ import com.chunmaru.sushishop.data.api.NetworkResponse
 import com.chunmaru.sushishop.data.api.ServiceController
 import com.chunmaru.sushishop.data.models.login.LoginResponse
 import com.chunmaru.sushishop.data.storage.DataStoreManager
-import com.chunmaru.sushishop.presentation.screens.order_details.elements.DefaultAlertDialog
+import com.chunmaru.sushishop.presentation.screens.defaults.alerts.DefaultAlertDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 fun checkToken(

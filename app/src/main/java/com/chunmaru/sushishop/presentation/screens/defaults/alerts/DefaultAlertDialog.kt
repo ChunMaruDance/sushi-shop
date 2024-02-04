@@ -1,7 +1,6 @@
-package com.chunmaru.sushishop.presentation.screens.order_details.elements
+package com.chunmaru.sushishop.presentation.screens.defaults.alerts
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,6 +25,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.chunmaru.sushishop.ui.theme.Gray30
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -71,7 +72,8 @@ fun DefaultAlertDialog(
                         color = Gray30,
                         fontSize = 18.sp,
                         modifier = Modifier.padding(bottom = 26.dp, top = 2.dp),
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        fontFamily = FontFamily.Serif
                     )
 
 

@@ -53,7 +53,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.chunmaru.sushishop.R
 import com.chunmaru.sushishop.presentation.screens.defaults.DefaultTopBar
 import com.chunmaru.sushishop.presentation.screens.order_details.elements.BottomButton
-import com.chunmaru.sushishop.presentation.screens.order_details.elements.DefaultAlertDialog
+import com.chunmaru.sushishop.presentation.screens.defaults.alerts.DefaultAlertDialog
 import com.chunmaru.sushishop.ui.theme.Gray120
 import com.chunmaru.sushishop.ui.theme.Gray30
 import com.chunmaru.sushishop.ui.theme.Gray70

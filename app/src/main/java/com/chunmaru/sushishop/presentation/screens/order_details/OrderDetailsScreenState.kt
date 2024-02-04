@@ -30,6 +30,5 @@ sealed class OrderState {
 
     object SuccessOrder : OrderState()
 
-
 }
 

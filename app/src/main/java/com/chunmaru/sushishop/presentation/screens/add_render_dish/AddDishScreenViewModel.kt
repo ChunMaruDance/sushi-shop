@@ -17,7 +17,6 @@ class AddDishScreenViewModel @Inject constructor(
     private val serviceController: ServiceController
 ) : ViewModel() {
 
-
     private val _state = MutableStateFlow<ScreenState<DishWithIngredientsCategories>>(
         ScreenState.Success(
             DishWithIngredientsCategories(

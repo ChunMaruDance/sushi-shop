@@ -1,6 +1,7 @@
 package com.chunmaru.sushishop.presentation.screens.defaults
 
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
